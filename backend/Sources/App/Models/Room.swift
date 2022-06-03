@@ -18,11 +18,7 @@ class Room {
         users.append(user)
         user.room = self
         
-        do {
-            let data = String(data: try JSONSerializer.shared.encoder.encode(gameData), encoding: .utf8)!
-            
-            user.webSocket.send(payload: SocketEvent(type: .setup, content: data))
-        } catch {}
+        user.webSocket.send(payload: SocketEvent(type: .setup, content: gameData.toJSONString()))
         
         broadcastToAllUsers(user: user, payload: SocketEvent(type: .userConnected, content: user.toJSONString()))
         
@@ -59,11 +55,7 @@ class Room {
     }
     
     func broadcastGameState() {
-        do {
-            let data = String(data: try JSONSerializer.shared.encoder.encode(gameData), encoding: .utf8)!
-            
-            broadcastToAllUsers(payload: SocketEvent(type: .setup, content: data))
-        } catch {}
+        broadcastToAllUsers(payload: SocketEvent(type: .setup, content: gameData.toJSONString()))
     }
     
     func setNextUserDrawing() {
@@ -98,10 +90,6 @@ class Room {
     func addDrawingToCanvas(drawing: Drawing) {
         gameData.imageData.append(drawing)
         
-        do {
-            let data = String(data: try JSONSerializer.shared.encoder.encode(gameData.imageData), encoding: .utf8)!
-            
-            broadcastToAllUsers(payload: SocketEvent(type: .updateCanvas, content: data))
-        } catch {}
+        broadcastToAllUsers(payload: SocketEvent(type: .updateCanvas, content: gameData.imageData.toJSONString()))
     }
 }
