@@ -6,19 +6,37 @@
 //
 
 import Foundation
+import WebSocketKit
 
 class RoomService {
     static let shared = RoomService()
     
-    private var test = ""
+    private var rooms: [String: Room] = [:]
     
     private init() {}
     
-    func changeTest(newTest: String) {
-        test = newTest
+    func addUserToRoom(user: User, roomId: String) {
+        if let room = rooms[roomId] {
+            room.addUser(user: user)
+        } else {
+            let room = Room()
+            room.addUser(user: user)
+            
+            rooms[roomId] = room
+        }
     }
     
-    func getTest() -> String {
-        test
+    func getRoom(roomId: String) -> Room? {
+        return rooms[roomId]
+    }
+    
+    func removeUserFromRoom(user: User, roomId: String) {
+        if let room = rooms[roomId] {
+            room.removeUser(user: user)
+            
+            if (room.users.isEmpty) {
+                rooms.removeValue(forKey: roomId)
+            }
+        }
     }
 }

@@ -18,33 +18,30 @@ struct WebsocketController: RouteCollection {
     func initWebsocket(_ req: Request, _ ws: WebSocket) {
         let roomId = req.parameters.get("roomId")!
         
-        print("Connected to \(roomId)")
+        let user = User(webSocket: ws)
         
-        ws.send("Hello to \(roomId)")
+        RoomService.shared.addUserToRoom(user: user, roomId: roomId)
         
-        ws.onText(handleOnText)
-    }
-    
-    func handleOnText(ws: WebSocket, payload: String) {
-        let socketEvent = try! decoder.decode(SocketEvent.self, from: payload.data(using: .utf8)!)
+        ws.onText {
+            let socketEvent = try! decoder.decode(SocketEvent.self, from: $1.data(using: .utf8)!)
+            
+            switch socketEvent.type {
+                case .setup:
+                    handleSetup(user, socketEvent)
+                case .get:
+                    handleGet(user, socketEvent)
+            }
+        }
         
-        switch socketEvent.type {
-            case .setup:
-                handleSetup(ws, socketEvent)
-            case .get:
-                handleGet(ws, socketEvent)
+        ws.onClose.whenComplete {_ in
+            RoomService.shared.removeUserFromRoom(user: user, roomId: roomId)
         }
     }
     
-    func handleSetup(_ ws: WebSocket, _ socketEvent: SocketEvent) {
-        RoomService.shared.changeTest(newTest: socketEvent.content!)
-        
-        print("Handle setup \(socketEvent.content!)")
-        
-        ws.send(RoomService.shared.getTest())
+    func handleSetup(_ user: User, _ socketEvent: SocketEvent) {
     }
     
-    func handleGet(_ ws: WebSocket, _ socketEvent: SocketEvent) {
-        ws.send(RoomService.shared.getTest())
+    func handleGet(_ user: User, _ socketEvent: SocketEvent) {
+        user.webSocket.send(user.room?.users.debugDescription ?? "bruh")
     }
 }
