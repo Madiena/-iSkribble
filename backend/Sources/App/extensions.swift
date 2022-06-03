@@ -15,3 +15,9 @@ extension WebSocket {
         self.send(String(data: data, encoding: .utf8)!)
     }
 }
+
+extension Encodable {
+    func toJSONString() -> String {
+        return String(data: try! JSONSerializer.shared.encoder.encode(self), encoding: .utf8)!
+    }
+}

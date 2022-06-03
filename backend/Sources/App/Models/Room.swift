@@ -24,6 +24,8 @@ class Room {
             user.webSocket.send(payload: SocketEvent(type: .setup, content: data))
         } catch {}
         
+        broadcastToAllUsers(user: user, payload: SocketEvent(type: .userConnected, content: user.toJSONString()))
+        
         if (users.count == 1) {
             setNextUserDrawing()
         }
@@ -37,6 +39,12 @@ class Room {
             gameData.currentUserDrawing = nil
             gameData.state = .waiting
             return
+        }
+        
+        broadcastToAllUsers(user: user, payload: SocketEvent(type: .userDisconnected, content: user.toJSONString()))
+        
+        if (gameData.currentUserDrawing?.id == user.id) {
+            setNextUserDrawing()
         }
     }
     
