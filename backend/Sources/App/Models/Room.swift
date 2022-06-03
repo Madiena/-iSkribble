@@ -8,8 +8,6 @@
 import Foundation
 
 class Room {
-    private let encoder = JSONEncoder()
-    
     var users: [User] = []
     var gameData = GameData()
     var currentUserDrawingIndex = 0
@@ -19,6 +17,12 @@ class Room {
     func addUser(user: User) {
         users.append(user)
         user.room = self
+        
+        do {
+            let data = String(data: try JSONSerializer.shared.encoder.encode(gameData), encoding: .utf8)!
+            
+            user.webSocket.send(payload: SocketEvent(type: .setup, content: data))
+        } catch {}
         
         if (users.count == 1) {
             setNextUserDrawing()
@@ -47,9 +51,11 @@ class Room {
     }
     
     func broadcastGameState() {
-        let data = String(data: try! encoder.encode(gameData), encoding: .utf8)!
-        
-        broadcastToAllUsers(payload: SocketEvent(type: .setup, content: data))
+        do {
+            let data = String(data: try JSONSerializer.shared.encoder.encode(gameData), encoding: .utf8)!
+            
+            broadcastToAllUsers(payload: SocketEvent(type: .setup, content: data))
+        } catch {}
     }
     
     func setNextUserDrawing() {
@@ -57,6 +63,7 @@ class Room {
         
         gameData.currentUserDrawing = users[currentUserDrawingIndex]
         gameData.state = .pickingWord
+        gameData.imageData = []
         
         broadcastGameState()
     }
@@ -78,5 +85,15 @@ class Room {
             
             setNextUserDrawing()
         }
+    }
+    
+    func addDrawingToCanvas(drawing: Drawing) {
+        gameData.imageData.append(drawing)
+        
+        do {
+            let data = String(data: try JSONSerializer.shared.encoder.encode(gameData.imageData), encoding: .utf8)!
+            
+            broadcastToAllUsers(payload: SocketEvent(type: .updateCanvas, content: data))
+        } catch {}
     }
 }

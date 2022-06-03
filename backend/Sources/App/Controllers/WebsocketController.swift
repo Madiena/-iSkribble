@@ -9,9 +9,6 @@ import Foundation
 import Vapor
 
 struct WebsocketController: RouteCollection {
-    private let decoder = JSONDecoder()
-    private let encoder = JSONEncoder()
-    
     func boot(routes: RoutesBuilder) throws {
         routes.webSocket(":roomId", onUpgrade: initWebsocket)
     }
@@ -25,9 +22,13 @@ struct WebsocketController: RouteCollection {
         RoomService.shared.addUserToRoom(user: user, roomId: roomId)
         
         ws.onText {
-            let socketEvent = try! decoder.decode(SocketEvent.self, from: $1.data(using: .utf8)!)
-
-            handleSocketEvent(user, socketEvent)
+            do {
+                let socketEvent = try JSONSerializer.shared.decoder.decode(SocketEvent.self, from: $1.data(using: .utf8)!)
+                
+                handleSocketEvent(user, socketEvent)
+            } catch {
+                print($0)
+            }
         }
         
         ws.onClose.whenComplete { _ in
@@ -39,8 +40,8 @@ struct WebsocketController: RouteCollection {
         switch socketEvent.type {
             case .sendMessage:
                 handleSendMessage(user, socketEvent)
-            case .updateCanvas:
-                handleUpdateCanvas(user, socketEvent)
+            case .addDrawingToCanvas:
+                handleAddDrawingToCanvas(user, socketEvent)
             case .pickWord:
                 handlePickWord(user, socketEvent)
             default:
@@ -55,8 +56,14 @@ struct WebsocketController: RouteCollection {
         }
     }
     
-    func handleUpdateCanvas(_ user: User, _ socketEvent: SocketEvent) {
-        user.webSocket.send(user.room?.users.map { $0.name }.description ?? "error")
+    func handleAddDrawingToCanvas(_ user: User, _ socketEvent: SocketEvent) {
+        do {
+            let drawing = try JSONSerializer.shared.decoder.decode(Drawing.self, from: socketEvent.content!.data(using: .utf8)!)
+            
+            if let room = user.room {
+                room.addDrawingToCanvas(drawing: drawing)
+            }
+        } catch {}
     }
     
     func handlePickWord(_ user: User, _ socketEvent: SocketEvent) {

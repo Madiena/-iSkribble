@@ -8,7 +8,7 @@
 import Foundation
 
 struct GameData: Encodable {
-    var imageData = Data()
+    var imageData: [Drawing] = []
     var currentWord = ""
     var currentUserDrawing: User? = nil
     var state: GameState = .waiting

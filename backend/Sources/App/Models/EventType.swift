@@ -13,9 +13,11 @@ enum EventType: String, Codable {
     case userConnected
     case userDisconnected
     case setup
+    case updateCanvas
+    case drawingPlayerChanged
     
     // Client events
     case sendMessage
-    case updateCanvas
+    case addDrawingToCanvas
     case pickWord
 }
