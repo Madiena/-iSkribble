@@ -8,6 +8,14 @@
 import Foundation
 
 enum EventType: String, Codable {
+    // Server events
+    case updateGameState
+    case userConnected
+    case userDisconnected
     case setup
-    case get
+    
+    // Client events
+    case sendMessage
+    case updateCanvas
+    case pickWord
 }
