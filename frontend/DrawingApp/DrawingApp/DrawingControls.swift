@@ -2,18 +2,22 @@
 //  DrawingControls.swift
 //  DrawingApp
 //
-//  Created by Lothar Hestermann on 30.05.22.
+//  Created by Madelaine Hestermann on 30.05.22.
 //
 
 import SwiftUI
 
 struct DrawingControls: View {
+    @Binding var color: Color
+    @Binding var drawings: [Drawing]
+    @Binding var lineWidth: CGFloat
+    
     @State private var colorPickerShown: Bool = false
     
     var body: some View {
         NavigationView {
             VStack {
-                HStack(spacing: spacing){
+                HStack(spacing: 40){
                     Button("Pick color") {
                         self.colorPickerShown = true
                     }
@@ -29,7 +33,7 @@ struct DrawingControls: View {
                 HStack {
                     Text("Pencil width")
                         .padding()
-                    Slider(value: $lineWidth, from: 1.0, through: 15.0, by: 1.0)
+                    Slider(value: $lineWidth, in: 1.0...15.0, step: 1.0)
                         .padding()
                 }
             }
@@ -45,6 +49,6 @@ struct DrawingControls: View {
 
 struct DrawingControls_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingControls()
+        DrawingControls(color: .constant(Color.black), drawings: .constant([Drawing]()), lineWidth: .constant(3))
     }
 }

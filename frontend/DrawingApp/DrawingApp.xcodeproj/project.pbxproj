@@ -13,16 +13,24 @@
 		E17FF3202844F9A60073D6CE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17FF31F2844F9A60073D6CE /* ContentView.swift */; };
 		E17FF3222844F9A80073D6CE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17FF3212844F9A80073D6CE /* Assets.xcassets */; };
 		E17FF3252844F9A80073D6CE /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E17FF3242844F9A80073D6CE /* Preview Assets.xcassets */; };
+		E184CB3A284E0A47002FA4EE /* ColorPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E184CB39284E0A47002FA4EE /* ColorPicker.swift */; };
+		E184CB3E284E0C64002FA4EE /* ColorsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E184CB3D284E0C64002FA4EE /* ColorsProvider.swift */; };
+		E184CB3F284E1EED002FA4EE /* ColorEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E184CB3B284E0B66002FA4EE /* ColorEntry.swift */; };
+		E184CB41284E268C002FA4EE /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E184CB40284E268C002FA4EE /* .gitignore */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		E172EE1C2844FE52001E64E6 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingPad.swift; sourceTree = "<group>"; };
-		E172EE1E28451693001E64E6 /* DrawingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingControls.swift; sourceTree = "<group>"; };
+		E172EE1C2844FE52001E64E6 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingPad.swift; path = DrawingApp/DrawingPad.swift; sourceTree = SOURCE_ROOT; };
+		E172EE1E28451693001E64E6 /* DrawingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingControls.swift; path = DrawingApp/DrawingControls.swift; sourceTree = SOURCE_ROOT; };
 		E17FF31A2844F9A60073D6CE /* DrawingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E17FF31D2844F9A60073D6CE /* DrawingAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingAppApp.swift; sourceTree = "<group>"; };
-		E17FF31F2844F9A60073D6CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		E17FF31F2844F9A60073D6CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = DrawingApp/ContentView.swift; sourceTree = SOURCE_ROOT; };
 		E17FF3212844F9A80073D6CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E17FF3242844F9A80073D6CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E184CB39284E0A47002FA4EE /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorPicker.swift; path = DrawingApp/ColorPicker.swift; sourceTree = SOURCE_ROOT; };
+		E184CB3B284E0B66002FA4EE /* ColorEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorEntry.swift; path = DrawingApp/ColorEntry.swift; sourceTree = SOURCE_ROOT; };
+		E184CB3D284E0C64002FA4EE /* ColorsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorsProvider.swift; path = DrawingApp/ColorsProvider.swift; sourceTree = SOURCE_ROOT; };
+		E184CB40284E268C002FA4EE /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +69,10 @@
 				E17FF3232844F9A80073D6CE /* Preview Content */,
 				E172EE1C2844FE52001E64E6 /* DrawingPad.swift */,
 				E172EE1E28451693001E64E6 /* DrawingControls.swift */,
+				E184CB39284E0A47002FA4EE /* ColorPicker.swift */,
+				E184CB3B284E0B66002FA4EE /* ColorEntry.swift */,
+				E184CB3D284E0C64002FA4EE /* ColorsProvider.swift */,
+				E184CB40284E268C002FA4EE /* .gitignore */,
 			);
 			path = DrawingApp;
 			sourceTree = "<group>";
@@ -132,6 +144,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E17FF3252844F9A80073D6CE /* Preview Assets.xcassets in Resources */,
+				E184CB41284E268C002FA4EE /* .gitignore in Resources */,
 				E17FF3222844F9A80073D6CE /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -145,7 +158,10 @@
 			files = (
 				E172EE1F28451693001E64E6 /* DrawingControls.swift in Sources */,
 				E172EE1D2844FE52001E64E6 /* DrawingPad.swift in Sources */,
+				E184CB3A284E0A47002FA4EE /* ColorPicker.swift in Sources */,
 				E17FF3202844F9A60073D6CE /* ContentView.swift in Sources */,
+				E184CB3F284E1EED002FA4EE /* ColorEntry.swift in Sources */,
+				E184CB3E284E0C64002FA4EE /* ColorsProvider.swift in Sources */,
 				E17FF31E2844F9A60073D6CE /* DrawingAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

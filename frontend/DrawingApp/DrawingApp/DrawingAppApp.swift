@@ -2,7 +2,7 @@
 //  DrawingAppApp.swift
 //  DrawingApp
 //
-//  Created by Lothar Hestermann on 30.05.22.
+//  Created by Madelaine Hestermann on 30.05.22.
 //
 
 import SwiftUI

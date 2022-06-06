@@ -23,8 +23,11 @@ struct ContentView: View {
         Text("Draw something!")
             .font(.largeTitle)
             .padding()
-            DrawingPad(currentDrawing: $currentDrawing, color: $color, lineWidth: $lineWidth)
-            DrawingControls(color: $color, drawings: $drawings, lineWidth: $lineWidth)
+        DrawingPad(currentDrawing: $currentDrawing,
+                drawings: $drawings,
+                color: $color,
+                lineWidth: $lineWidth)
+        DrawingControls(color: $color, drawings: $drawings, lineWidth: $lineWidth)
         }
     }
 }
