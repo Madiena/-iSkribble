@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		58211AAF28523AD9008537A9 /* shared in Frameworks */ = {isa = PBXBuildFile; productRef = 58211AAE28523AD9008537A9 /* shared */; };
+		588AFED1285244CB007FB744 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588AFED0285244CB007FB744 /* GameManager.swift */; };
+		588AFED32852476A007FB744 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588AFED22852476A007FB744 /* WebSocketManager.swift */; };
 		E172EE1D2844FE52001E64E6 /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E172EE1C2844FE52001E64E6 /* DrawingPad.swift */; };
 		E172EE1F28451693001E64E6 /* DrawingControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E172EE1E28451693001E64E6 /* DrawingControls.swift */; };
 		E17FF31E2844F9A60073D6CE /* DrawingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17FF31D2844F9A60073D6CE /* DrawingAppApp.swift */; };
@@ -22,6 +24,8 @@
 
 /* Begin PBXFileReference section */
 		58211AAC28523AC4008537A9 /* shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = shared; path = ../../../shared; sourceTree = "<group>"; };
+		588AFED0285244CB007FB744 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
+		588AFED22852476A007FB744 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
 		E172EE1C2844FE52001E64E6 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingPad.swift; path = DrawingApp/DrawingPad.swift; sourceTree = SOURCE_ROOT; };
 		E172EE1E28451693001E64E6 /* DrawingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingControls.swift; path = DrawingApp/DrawingControls.swift; sourceTree = SOURCE_ROOT; };
 		E17FF31A2844F9A60073D6CE /* DrawingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -54,6 +58,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		588AFECF285244BD007FB744 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				588AFED0285244CB007FB744 /* GameManager.swift */,
+				588AFED22852476A007FB744 /* WebSocketManager.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
 		E17FF3112844F9A60073D6CE = {
 			isa = PBXGroup;
 			children = (
@@ -74,6 +87,7 @@
 		E17FF31C2844F9A60073D6CE /* DrawingApp */ = {
 			isa = PBXGroup;
 			children = (
+				588AFECF285244BD007FB744 /* Managers */,
 				E17FF31D2844F9A60073D6CE /* DrawingAppApp.swift */,
 				E17FF31F2844F9A60073D6CE /* ContentView.swift */,
 				E17FF3212844F9A80073D6CE /* Assets.xcassets */,
@@ -172,6 +186,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				E172EE1F28451693001E64E6 /* DrawingControls.swift in Sources */,
+				588AFED1285244CB007FB744 /* GameManager.swift in Sources */,
+				588AFED32852476A007FB744 /* WebSocketManager.swift in Sources */,
 				E172EE1D2844FE52001E64E6 /* DrawingPad.swift in Sources */,
 				E184CB3A284E0A47002FA4EE /* ColorPicker.swift in Sources */,
 				E17FF3202844F9A60073D6CE /* ContentView.swift in Sources */,

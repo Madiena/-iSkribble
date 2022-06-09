@@ -8,7 +8,7 @@
 import Foundation
 import WebSocketKit
 
-extension WebSocket {
+public extension WebSocket {
     func send(payload: SocketEvent) {
         let data = try! JSONSerializer.shared.encoder.encode(payload)
         
@@ -16,7 +16,7 @@ extension WebSocket {
     }
 }
 
-extension Encodable {
+public extension Encodable {
     func toJSONString() -> String {
         return String(data: try! JSONSerializer.shared.encoder.encode(self), encoding: .utf8)!
     }
