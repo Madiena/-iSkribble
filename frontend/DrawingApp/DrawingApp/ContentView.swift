@@ -6,13 +6,7 @@
 //
 
 import SwiftUI
-
-struct Drawing {
-    var points: [CGPoint] = [CGPoint]()
-    var color: Color
-    var lineWidth: CGFloat
-}
-
+import shared
 
 struct ContentView: View {
     @State private var currentDrawing: Drawing = Drawing(color:Color.black, lineWidth: 3.0)

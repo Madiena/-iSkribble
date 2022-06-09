@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import shared
 
 struct DrawingPad: View {
     @Binding var currentDrawing: Drawing
@@ -45,7 +46,7 @@ struct DrawingPad: View {
         DragGesture(minimumDistance: 0.1)
             .onChanged({ (value) in
                 let currentPoint = value.location
-                    self.currentDrawing.points.append(currentPoint)
+                    self.currentDrawing.path.append(currentPoint)
                 
             })
             .onEnded({ (value) in
@@ -54,13 +55,13 @@ struct DrawingPad: View {
                 
                 drawings.append(self.currentDrawing)
                 
-                currentDrawing.points = []
+                currentDrawing.path = []
             })
         )
     }
     
     private func add(drawing: Drawing, toPath path: inout Path) {
-        let points = drawing.points
+        let points = drawing.path
         if points.count > 1 {
             path.move(to: points[0])
             for i in 0..<points.count-1 {

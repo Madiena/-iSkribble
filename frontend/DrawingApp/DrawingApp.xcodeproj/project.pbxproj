@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58211AAF28523AD9008537A9 /* shared in Frameworks */ = {isa = PBXBuildFile; productRef = 58211AAE28523AD9008537A9 /* shared */; };
 		E172EE1D2844FE52001E64E6 /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E172EE1C2844FE52001E64E6 /* DrawingPad.swift */; };
 		E172EE1F28451693001E64E6 /* DrawingControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E172EE1E28451693001E64E6 /* DrawingControls.swift */; };
 		E17FF31E2844F9A60073D6CE /* DrawingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17FF31D2844F9A60073D6CE /* DrawingAppApp.swift */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		58211AAC28523AC4008537A9 /* shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = shared; path = ../../../shared; sourceTree = "<group>"; };
 		E172EE1C2844FE52001E64E6 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingPad.swift; path = DrawingApp/DrawingPad.swift; sourceTree = SOURCE_ROOT; };
 		E172EE1E28451693001E64E6 /* DrawingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingControls.swift; path = DrawingApp/DrawingControls.swift; sourceTree = SOURCE_ROOT; };
 		E17FF31A2844F9A60073D6CE /* DrawingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,17 +40,26 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58211AAF28523AD9008537A9 /* shared in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58211AAD28523AD9008537A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		E17FF3112844F9A60073D6CE = {
 			isa = PBXGroup;
 			children = (
 				E17FF31C2844F9A60073D6CE /* DrawingApp */,
 				E17FF31B2844F9A60073D6CE /* Products */,
+				58211AAD28523AD9008537A9 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -73,6 +84,7 @@
 				E184CB3B284E0B66002FA4EE /* ColorEntry.swift */,
 				E184CB3D284E0C64002FA4EE /* ColorsProvider.swift */,
 				E184CB40284E268C002FA4EE /* .gitignore */,
+				58211AAC28523AC4008537A9 /* shared */,
 			);
 			path = DrawingApp;
 			sourceTree = "<group>";
@@ -101,6 +113,9 @@
 			dependencies = (
 			);
 			name = DrawingApp;
+			packageProductDependencies = (
+				58211AAE28523AD9008537A9 /* shared */,
+			);
 			productName = DrawingApp;
 			productReference = E17FF31A2844F9A60073D6CE /* DrawingApp.app */;
 			productType = "com.apple.product-type.application";
@@ -363,6 +378,13 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		58211AAE28523AD9008537A9 /* shared */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = shared;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = E17FF3122844F9A60073D6CE /* Project object */;
 }

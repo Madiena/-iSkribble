@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import shared
 
 struct DrawingControls: View {
     @Binding var color: Color
