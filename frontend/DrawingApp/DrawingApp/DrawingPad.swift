@@ -15,14 +15,16 @@ struct DrawingPad: View {
     
     var body: some View {
         Canvas { context, size in
-            
             for drawing in drawings {
                 context.stroke(
                     Path { path in
                         self.add(drawing: drawing, toPath: &path)
                     },
                     with: .color(drawing.color),
-                    lineWidth: drawing.lineWidth
+                    style: StrokeStyle(
+                        lineWidth: drawing.lineWidth,
+                        lineCap: .round
+                    )
                 )
 
             }
@@ -32,7 +34,10 @@ struct DrawingPad: View {
                     self.add(drawing: currentDrawing, toPath: &path)
                 },
                 with: .color(color),
-                lineWidth: lineWidth
+                style: StrokeStyle(
+                    lineWidth: lineWidth,
+                    lineCap: .round
+                )
             )
         }
         .frame(maxHeight: .infinity)
@@ -46,8 +51,10 @@ struct DrawingPad: View {
             .onEnded({ (value) in
                 currentDrawing.lineWidth = lineWidth
                 currentDrawing.color = color
-                self.drawings.append(self.currentDrawing)
-                self.currentDrawing = Drawing(color: color, lineWidth: lineWidth)
+                
+                drawings.append(self.currentDrawing)
+                
+                currentDrawing.points = []
             })
         )
     }
@@ -55,10 +62,10 @@ struct DrawingPad: View {
     private func add(drawing: Drawing, toPath path: inout Path) {
         let points = drawing.points
         if points.count > 1 {
+            path.move(to: points[0])
             for i in 0..<points.count-1 {
                 let current = points[i]
                 let next = points[i+1]
-                path.move(to: current)
                 path.addLine(to: next)
             }
         }
