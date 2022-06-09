@@ -8,13 +8,13 @@
 import Foundation
 import WebSocketKit
 
-class User: Encodable {
-    var webSocket: WebSocket
-    var name: String
-    var id: UUID
-    var room: Room?
+public class User: Encodable {
+    public var webSocket: WebSocket
+    public var name: String
+    public var id: UUID
+    public var room: Room?
     
-    init(
+    public init(
         webSocket: WebSocket,
         name: String,
         id: UUID = UUID(),

@@ -7,21 +7,21 @@
 
 import Foundation
 
-struct Drawing: Codable {
-    var path: [CGPoint]
-    var color: CGColor
+public struct Drawing: Codable {
+    public var path: [CGPoint]
+    public var color: CGColor
     
     enum CodingKeys: String, CodingKey {
         case path = "path"
         case color = "color"
     }
     
-    init(path: [CGPoint], color: CGColor) {
+    public init(path: [CGPoint], color: CGColor) {
         self.path = path
         self.color = color
     }
     
-    init(from decoder: Decoder) throws {
+    public init(from decoder: Decoder) throws {
         let values = try decoder.container(keyedBy: CodingKeys.self)
         
         let tempPath = try values.decode(Array<Array<Double>>.self, forKey: .path)
@@ -36,7 +36,7 @@ struct Drawing: Codable {
         )
     }
     
-    func encode(to encoder: Encoder) throws {
+    public func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         try container.encode(path.map { [$0.x, $0.y] }, forKey: .path)

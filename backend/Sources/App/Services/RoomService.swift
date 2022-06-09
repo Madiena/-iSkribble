@@ -7,6 +7,7 @@
 
 import Foundation
 import WebSocketKit
+import shared
 
 class RoomService {
     static let shared = RoomService()

@@ -7,6 +7,7 @@
 
 import Foundation
 import Vapor
+import shared
 
 struct WebsocketController: RouteCollection {
     func boot(routes: RoutesBuilder) throws {
@@ -18,6 +19,7 @@ struct WebsocketController: RouteCollection {
         let name: String = req.query["name"]!
         
         let user = User(webSocket: ws, name: name)
+        
         
         RoomService.shared.addUserToRoom(user: user, roomId: roomId)
         

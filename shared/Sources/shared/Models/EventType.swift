@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum EventType: String, Codable {
+public enum EventType: String, Codable {
     // Server events
     case updateGameState
     case userConnected

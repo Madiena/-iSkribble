@@ -7,14 +7,14 @@
 
 import Foundation
 
-class Room {
-    var users: [User] = []
-    var gameData = GameData()
-    var currentUserDrawingIndex = 0
+public class Room {
+    public var users: [User] = []
+    public var gameData = GameData()
+    public var currentUserDrawingIndex = 0
     
-    init() {}
+    public init() {}
     
-    func addUser(user: User) {
+    public func addUser(user: User) {
         users.append(user)
         user.room = self
         
@@ -27,7 +27,7 @@ class Room {
         }
     }
     
-    func removeUser(user: User) {
+    public func removeUser(user: User) {
         users = users.filter { $0.id != user.id }
         user.room = nil
         
@@ -44,21 +44,21 @@ class Room {
         }
     }
     
-    func broadcastToAllUsers(payload: SocketEvent) {
+    public func broadcastToAllUsers(payload: SocketEvent) {
         users.forEach { $0.webSocket.send(payload: payload) }
     }
     
-    func broadcastToAllUsers(user: User, payload: SocketEvent) {
+    public func broadcastToAllUsers(user: User, payload: SocketEvent) {
         users
             .filter { $0.id != user.id }
             .forEach { $0.webSocket.send(payload: payload) }
     }
     
-    func broadcastGameState() {
+    public func broadcastGameState() {
         broadcastToAllUsers(payload: SocketEvent(type: .setup, content: gameData.toJSONString()))
     }
     
-    func setNextUserDrawing() {
+    public func setNextUserDrawing() {
         currentUserDrawingIndex = (currentUserDrawingIndex + 1) % users.count
         
         gameData.currentUserDrawing = users[currentUserDrawingIndex]
@@ -68,14 +68,14 @@ class Room {
         broadcastGameState()
     }
     
-    func setPickedWord(word: String) {
+    public func setPickedWord(word: String) {
         gameData.currentWord = word
         gameData.state = .drawing
         
         broadcastGameState()
     }
     
-    func processGuess(user: User, guess: String) {
+    public func processGuess(user: User, guess: String) {
         if (guess == gameData.currentWord) {
             gameData.currentWord = ""
             
@@ -87,7 +87,7 @@ class Room {
         }
     }
     
-    func addDrawingToCanvas(drawing: Drawing) {
+    public func addDrawingToCanvas(drawing: Drawing) {
         gameData.imageData.append(drawing)
         
         broadcastToAllUsers(payload: SocketEvent(type: .updateCanvas, content: gameData.imageData.toJSONString()))

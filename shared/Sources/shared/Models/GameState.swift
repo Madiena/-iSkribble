@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum GameState: String, Codable {
+public enum GameState: String, Codable {
     case pickingWord
     case drawing
     case waiting
