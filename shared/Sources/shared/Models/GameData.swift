@@ -10,6 +10,6 @@ import Foundation
 public struct GameData: Encodable {
     public var imageData: [Drawing] = []
     public var currentWord = ""
-    public var currentUserDrawing: User? = nil
+    public var currentUserDrawing: UUID? = nil
     public var state: GameState = .waiting
 }
