@@ -39,7 +39,7 @@ public class Room {
         
         broadcastToAllUsers(user: user, payload: SocketEvent(type: .userDisconnected, content: user.toJSONString()))
         
-        if (gameData.currentUserDrawing?.id == user.id) {
+        if (gameData.currentUserDrawing == user.id) {
             setNextUserDrawing()
         }
     }
@@ -61,7 +61,7 @@ public class Room {
     public func setNextUserDrawing() {
         currentUserDrawingIndex = (currentUserDrawingIndex + 1) % users.count
         
-        gameData.currentUserDrawing = users[currentUserDrawingIndex]
+        gameData.currentUserDrawing = users[currentUserDrawingIndex].id
         gameData.state = .pickingWord
         gameData.imageData = []
         
