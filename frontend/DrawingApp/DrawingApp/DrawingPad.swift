@@ -14,31 +14,42 @@ struct DrawingPad: View {
     @Binding var lineWidth: CGFloat
     
     var body: some View {
-        GeometryReader { geometry in
-            Path { path in
-                for drawing in self.drawings {
-                    self.add(drawing: drawing, toPath: &path)
-                }
-                self.add(drawing: self.currentDrawing, toPath: &path)
-            }.stroke(self.color, lineWidth: self.lineWidth)
-                .background(Color(white: 0.95))
-                .gesture(
-                    DragGesture(minimumDistance: 0.1)
-                        .onChanged({ (value) in
-                            let currentPoint = value.location
-                            if currentPoint.y >= 0 && currentPoint.y < geometry.size.height {
-                                self.currentDrawing.points.append(currentPoint)
-                            }
-                            
-                        })
-                        .onEnded({ (value) in
-                            self.drawings.append(self.currentDrawing)
-                            self.currentDrawing = Drawing()
-                        })
-                )
+        Canvas { context, size in
             
+            for drawing in drawings {
+                context.stroke(
+                    Path { path in
+                        self.add(drawing: drawing, toPath: &path)
+                    },
+                    with: .color(drawing.color),
+                    lineWidth: drawing.lineWidth
+                )
+
+            }
+            
+            context.stroke(
+                Path { path in
+                    self.add(drawing: currentDrawing, toPath: &path)
+                },
+                with: .color(color),
+                lineWidth: lineWidth
+            )
         }
         .frame(maxHeight: .infinity)
+        .gesture(
+        DragGesture(minimumDistance: 0.1)
+            .onChanged({ (value) in
+                let currentPoint = value.location
+                    self.currentDrawing.points.append(currentPoint)
+                
+            })
+            .onEnded({ (value) in
+                currentDrawing.lineWidth = lineWidth
+                currentDrawing.color = color
+                self.drawings.append(self.currentDrawing)
+                self.currentDrawing = Drawing(color: color, lineWidth: lineWidth)
+            })
+        )
     }
     
     private func add(drawing: Drawing, toPath path: inout Path) {
@@ -56,6 +67,6 @@ struct DrawingPad: View {
 
 struct DrawingPad_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingPad(currentDrawing: .constant(Drawing()), drawings: .constant([Drawing]()), color: .constant(Color.black), lineWidth: .constant(3))
+        DrawingPad(currentDrawing: .constant(Drawing(color: Color.black, lineWidth: 3.0)), drawings: .constant([Drawing]()), color: .constant(Color.black), lineWidth: .constant(3))
     }
 }
