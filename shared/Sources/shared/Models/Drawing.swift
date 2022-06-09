@@ -10,15 +10,18 @@ import Foundation
 public struct Drawing: Codable {
     public var path: [CGPoint]
     public var color: CGColor
+    public var lineWidth: CGFloat
     
     enum CodingKeys: String, CodingKey {
         case path = "path"
         case color = "color"
+        case lineWidth = "lineWidth"
     }
     
-    public init(path: [CGPoint], color: CGColor) {
+    public init(path: [CGPoint], color: CGColor, lineWidth: CGFloat) {
         self.path = path
         self.color = color
+        self.lineWidth = lineWidth
     }
     
     public init(from decoder: Decoder) throws {
@@ -34,6 +37,9 @@ public struct Drawing: Codable {
             blue: CGFloat(tempColor[2]),
             alpha: CGFloat(tempColor[3])
         )
+        
+        let tempLineWdith = try values.decode(Float.self, forKey: .lineWidth)
+        lineWidth = CGFloat(lineWidth)
     }
     
     public func encode(to encoder: Encoder) throws {
@@ -41,5 +47,6 @@ public struct Drawing: Codable {
 
         try container.encode(path.map { [$0.x, $0.y] }, forKey: .path)
         try container.encode(color.components, forKey: .color)
+        try container.encode(Float(lineWidth), forKey: .lineWidth)
     }
 }
