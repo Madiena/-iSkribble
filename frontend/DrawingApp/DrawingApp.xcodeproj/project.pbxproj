@@ -20,6 +20,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		58DB9D772852367A00094308 /* shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = shared; path = ../../shared; sourceTree = "<group>"; };
 		E172EE1C2844FE52001E64E6 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingPad.swift; path = DrawingApp/DrawingPad.swift; sourceTree = SOURCE_ROOT; };
 		E172EE1E28451693001E64E6 /* DrawingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingControls.swift; path = DrawingApp/DrawingControls.swift; sourceTree = SOURCE_ROOT; };
 		E17FF31A2844F9A60073D6CE /* DrawingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,9 +45,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		58DB9D762852367A00094308 /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				58DB9D772852367A00094308 /* shared */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
 		E17FF3112844F9A60073D6CE = {
 			isa = PBXGroup;
 			children = (
+				58DB9D762852367A00094308 /* Packages */,
 				E17FF31C2844F9A60073D6CE /* DrawingApp */,
 				E17FF31B2844F9A60073D6CE /* Products */,
 			);
