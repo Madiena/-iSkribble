@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		58211AAF28523AD9008537A9 /* shared in Frameworks */ = {isa = PBXBuildFile; productRef = 58211AAE28523AD9008537A9 /* shared */; };
 		582F7AF7285741D3001D3D9B /* WordEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582F7AF6285741D3001D3D9B /* WordEntry.swift */; };
+		582F7AFB285743DA001D3D9B /* WebSocketTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582F7AFA285743DA001D3D9B /* WebSocketTest.swift */; };
 		588AFED1285244CB007FB744 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588AFED0285244CB007FB744 /* GameManager.swift */; };
 		588AFED32852476A007FB744 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588AFED22852476A007FB744 /* WebSocketManager.swift */; };
 		E172EE1D2844FE52001E64E6 /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E172EE1C2844FE52001E64E6 /* DrawingPad.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		58211AAC28523AC4008537A9 /* shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = shared; path = ../../../shared; sourceTree = "<group>"; };
 		582F7AF6285741D3001D3D9B /* WordEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordEntry.swift; sourceTree = "<group>"; };
+		582F7AFA285743DA001D3D9B /* WebSocketTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketTest.swift; sourceTree = "<group>"; };
 		588AFED0285244CB007FB744 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		588AFED22852476A007FB744 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
 		E172EE1C2844FE52001E64E6 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingPad.swift; path = DrawingApp/DrawingPad.swift; sourceTree = SOURCE_ROOT; };
@@ -102,6 +104,7 @@
 				E184CB3D284E0C64002FA4EE /* ColorsProvider.swift */,
 				E184CB40284E268C002FA4EE /* .gitignore */,
 				58211AAC28523AC4008537A9 /* shared */,
+				582F7AFA285743DA001D3D9B /* WebSocketTest.swift */,
 			);
 			path = DrawingApp;
 			sourceTree = "<group>";
@@ -194,6 +197,7 @@
 				588AFED32852476A007FB744 /* WebSocketManager.swift in Sources */,
 				E172EE1D2844FE52001E64E6 /* DrawingPad.swift in Sources */,
 				E184CB3A284E0A47002FA4EE /* ColorPicker.swift in Sources */,
+				582F7AFB285743DA001D3D9B /* WebSocketTest.swift in Sources */,
 				E17FF3202844F9A60073D6CE /* ContentView.swift in Sources */,
 				E184CB3F284E1EED002FA4EE /* ColorEntry.swift in Sources */,
 				E184CB3E284E0C64002FA4EE /* ColorsProvider.swift in Sources */,

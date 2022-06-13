@@ -12,6 +12,8 @@ import shared
 
 protocol WebSocketManagerDelegate {
     func handleSocketEvent(_ socketEvent: SocketEvent)
+    func handleOnConnect()
+    func handleOnDisconnect()
 }
 
 class WebSocketManager: NSObject {
@@ -26,6 +28,8 @@ class WebSocketManager: NSObject {
     func connect(_ to: String) {
         let _ = WebSocket.connect(to: to, on: eventLoop) { ws in
             self.webSocket = ws
+            
+            self.delegate?.handleOnConnect()
             
             ws.onText {
                 do {
@@ -42,6 +46,8 @@ class WebSocketManager: NSObject {
         let _ = webSocket?.close()
         
         webSocket = nil
+        
+        delegate?.handleOnDisconnect()
     }
     
     func sendSocketEvent(_ socketEvent: SocketEvent) {
