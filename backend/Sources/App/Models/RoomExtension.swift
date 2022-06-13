@@ -13,7 +13,7 @@ extension Room {
         users.append(user)
         user.room = self
         
-        let setupData = SetupData(ownUser: user.id, gameData: gameData)
+        let setupData = SetupData(ownUser: user.id, gameData: gameData, users: users)
         user.webSocket.send(payload: SocketEvent(type: .setup, content: setupData.toJSONString()))
         
         broadcastToAllUsers(user: user, payload: SocketEvent(type: .userConnected, content: user.toJSONString()))

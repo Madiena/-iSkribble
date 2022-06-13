@@ -10,9 +10,11 @@ import Foundation
 public struct SetupData: Codable {
     public var ownUser: UUID
     public var gameData: GameData
+    public var users: [User]
     
-    public init(ownUser: UUID, gameData: GameData) {
+    public init(ownUser: UUID, gameData: GameData, users: [User]) {
         self.ownUser = ownUser
         self.gameData = gameData
+        self.users = users
     }
 }

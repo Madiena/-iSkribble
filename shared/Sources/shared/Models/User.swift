@@ -7,7 +7,7 @@
 
 import Foundation
 
-open class User: Encodable {
+open class User: Codable {
     public var name: String
     public var id: UUID
     

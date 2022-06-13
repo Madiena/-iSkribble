@@ -24,4 +24,8 @@ class BackendUser: User {
         
         super.init(name: name, id: id)
     }
+    
+    required init(from decoder: Decoder) throws {
+        fatalError("init(from:) has not been implemented")
+    }
 }
