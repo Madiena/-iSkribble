@@ -11,11 +11,11 @@ import SwiftUI
 struct DrawingAppApp: App {
     var body: some Scene {
         WindowGroup {
-            //ContentView()
+            ContentView()
             
-            WebSocketTest(
-                userName: "TestUser", roomId: "Test"
-            )
+            //WebSocketTest(
+            //    userName: "TestUser", roomId: "Test"
+            //)
             
         }
     }
