@@ -21,7 +21,8 @@ struct WordEntry: View {
                         }.padding()
                         .textFieldStyle(DefaultTextFieldStyle())
             Button(action: {
-                pickWord = false;
+                text = text
+                pickWord = false
                 }) {
                 Text("Enter")
                         .foregroundColor( Color.white)
