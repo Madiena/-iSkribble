@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		58211AAF28523AD9008537A9 /* shared in Frameworks */ = {isa = PBXBuildFile; productRef = 58211AAE28523AD9008537A9 /* shared */; };
+		582F7AF7285741D3001D3D9B /* WordEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582F7AF6285741D3001D3D9B /* WordEntry.swift */; };
 		588AFED1285244CB007FB744 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588AFED0285244CB007FB744 /* GameManager.swift */; };
 		588AFED32852476A007FB744 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588AFED22852476A007FB744 /* WebSocketManager.swift */; };
-		E13E96C7285740E300835683 /* WordEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E13E96C6285740E300835683 /* WordEntry.swift */; };
 		E172EE1D2844FE52001E64E6 /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E172EE1C2844FE52001E64E6 /* DrawingPad.swift */; };
 		E172EE1F28451693001E64E6 /* DrawingControls.swift in Sources */ = {isa = PBXBuildFile; fileRef = E172EE1E28451693001E64E6 /* DrawingControls.swift */; };
 		E17FF31E2844F9A60073D6CE /* DrawingAppApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E17FF31D2844F9A60073D6CE /* DrawingAppApp.swift */; };
@@ -25,9 +25,9 @@
 
 /* Begin PBXFileReference section */
 		58211AAC28523AC4008537A9 /* shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = shared; path = ../../../shared; sourceTree = "<group>"; };
+		582F7AF6285741D3001D3D9B /* WordEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordEntry.swift; sourceTree = "<group>"; };
 		588AFED0285244CB007FB744 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		588AFED22852476A007FB744 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
-		E13E96C6285740E300835683 /* WordEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = WordEntry.swift; path = ../../../../../../WordEntry.swift; sourceTree = "<group>"; };
 		E172EE1C2844FE52001E64E6 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingPad.swift; path = DrawingApp/DrawingPad.swift; sourceTree = SOURCE_ROOT; };
 		E172EE1E28451693001E64E6 /* DrawingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingControls.swift; path = DrawingApp/DrawingControls.swift; sourceTree = SOURCE_ROOT; };
 		E17FF31A2844F9A60073D6CE /* DrawingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -97,7 +97,7 @@
 				E172EE1C2844FE52001E64E6 /* DrawingPad.swift */,
 				E172EE1E28451693001E64E6 /* DrawingControls.swift */,
 				E184CB39284E0A47002FA4EE /* ColorPicker.swift */,
-				E13E96C6285740E300835683 /* WordEntry.swift */,
+				582F7AF6285741D3001D3D9B /* WordEntry.swift */,
 				E184CB3B284E0B66002FA4EE /* ColorEntry.swift */,
 				E184CB3D284E0C64002FA4EE /* ColorsProvider.swift */,
 				E184CB40284E268C002FA4EE /* .gitignore */,
@@ -188,8 +188,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E13E96C7285740E300835683 /* WordEntry.swift in Sources */,
 				E172EE1F28451693001E64E6 /* DrawingControls.swift in Sources */,
+				582F7AF7285741D3001D3D9B /* WordEntry.swift in Sources */,
 				588AFED1285244CB007FB744 /* GameManager.swift in Sources */,
 				588AFED32852476A007FB744 /* WebSocketManager.swift in Sources */,
 				E172EE1D2844FE52001E64E6 /* DrawingPad.swift in Sources */,
