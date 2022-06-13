@@ -17,4 +17,10 @@ public struct SetupData: Codable {
         self.gameData = gameData
         self.users = users
     }
+    
+    enum CodingKeys: String, CodingKey {
+        case ownUser = "ownUser"
+        case gameData = "gameData"
+        case users = "users"
+    }
 }

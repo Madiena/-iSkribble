@@ -51,7 +51,7 @@ extension Room {
     }
     
     func broadcastGameState() {
-        broadcastToAllUsers(payload: SocketEvent(type: .setup, content: gameData.toJSONString()))
+        broadcastToAllUsers(payload: SocketEvent(type: .updateGameState, content: gameData.toJSONString()))
     }
     
     func setNextUserDrawing() {

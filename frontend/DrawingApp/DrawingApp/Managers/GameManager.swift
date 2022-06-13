@@ -11,7 +11,9 @@ import shared
 class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     private var webSocketManager = WebSocketManager()
     
-    @Published var drawing = []
+    @Published var users: [User] = []
+    @Published var ownUser: UUID? = nil
+    @Published var gameData: GameData? = nil
     @Published var messages: [String] = []
     @Published var isConnected = false
     
@@ -42,6 +44,10 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
         
         DispatchQueue.main.async {
             self.isConnected = false
+            self.messages = []
+            self.users = []
+            self.ownUser = nil
+            self.gameData = nil
         }
     }
     
@@ -52,6 +58,19 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
             case .sendMessage:
                 DispatchQueue.main.async {
                     self.messages.append(socketEvent.content!)
+                }
+            case .setup :
+                do {
+                    let setupData = try JSONSerializer.shared.decoder.decode(SetupData.self, from: socketEvent.content!.data(using: .utf8)!)
+
+                    DispatchQueue.main.async {
+                        self.users = setupData.users
+                        self.ownUser = setupData.ownUser
+                        self.gameData = setupData.gameData
+                    }
+                } catch {
+                    print(error)
+                    disconnect()
                 }
             default:
                 break

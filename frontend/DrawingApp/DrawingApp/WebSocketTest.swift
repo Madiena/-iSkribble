@@ -18,6 +18,12 @@ struct WebSocketTest: View {
             Text("Status: \(gameManager.isConnected.description)")
             
             if gameManager.isConnected {
+                Text(gameManager.ownUser?.description ?? "")
+                
+                ForEach(gameManager.users, id: \.id) { user in
+                    Text("\(user.id): \(user.name)")
+                }
+                
                 ForEach(gameManager.messages, id: \.self) { message in
                     Text(message)
                 }
