@@ -7,7 +7,7 @@
 
 import Foundation
 
-public struct GameData: Encodable {
+public struct GameData: Codable {
     public var imageData: [Drawing] = []
     public var currentWord = ""
     public var currentUserDrawing: UUID? = nil

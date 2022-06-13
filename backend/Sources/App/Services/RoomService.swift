@@ -16,7 +16,7 @@ class RoomService {
     
     private init() {}
     
-    func addUserToRoom(user: User, roomId: String) {
+    func addUserToRoom(user: BackendUser, roomId: String) {
         if let room = rooms[roomId] {
             room.addUser(user: user)
         } else {
@@ -31,7 +31,7 @@ class RoomService {
         return rooms[roomId]
     }
     
-    func removeUserFromRoom(user: User, roomId: String) {
+    func removeUserFromRoom(user: BackendUser, roomId: String) {
         if let room = rooms[roomId] {
             room.removeUser(user: user)
             

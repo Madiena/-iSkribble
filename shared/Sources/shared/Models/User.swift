@@ -6,28 +6,16 @@
 //
 
 import Foundation
-import WebSocketKit
 
-public class User: Encodable {
-    public var webSocket: WebSocket
+open class User: Encodable {
     public var name: String
     public var id: UUID
-    public var room: Room?
     
     public init(
-        webSocket: WebSocket,
         name: String,
-        id: UUID = UUID(),
-        room: Room? = nil
+        id: UUID = UUID()
     ) {
-        self.webSocket = webSocket
         self.name = name
         self.id = id
-        self.room = room
     }
-    
-    enum CodingKeys: String, CodingKey {
-           case id
-           case name
-       }
 }

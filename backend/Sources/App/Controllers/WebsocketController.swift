@@ -18,7 +18,7 @@ struct WebsocketController: RouteCollection {
         let roomId = req.parameters.get("roomId")!
         let name: String = req.query["name"]!
         
-        let user = User(webSocket: ws, name: name)
+        let user = BackendUser(webSocket: ws, name: name)
         
         
         RoomService.shared.addUserToRoom(user: user, roomId: roomId)
@@ -38,7 +38,7 @@ struct WebsocketController: RouteCollection {
         }
     }
     
-    func handleSocketEvent(_ user: User, _ socketEvent: SocketEvent) {
+    func handleSocketEvent(_ user: BackendUser, _ socketEvent: SocketEvent) {
         switch socketEvent.type {
             case .sendMessage:
                 handleSendMessage(user, socketEvent)
@@ -51,14 +51,14 @@ struct WebsocketController: RouteCollection {
         }
     }
     
-    func handleSendMessage(_ user: User, _ socketEvent: SocketEvent) {
+    func handleSendMessage(_ user: BackendUser, _ socketEvent: SocketEvent) {
         if let room = user.room {
             room.processGuess(user: user, guess: socketEvent.content!)
             room.broadcastToAllUsers(payload: socketEvent)
         }
     }
     
-    func handleAddDrawingToCanvas(_ user: User, _ socketEvent: SocketEvent) {
+    func handleAddDrawingToCanvas(_ user: BackendUser, _ socketEvent: SocketEvent) {
         do {
             let drawing = try JSONSerializer.shared.decoder.decode(Drawing.self, from: socketEvent.content!.data(using: .utf8)!)
             
@@ -68,7 +68,7 @@ struct WebsocketController: RouteCollection {
         } catch {}
     }
     
-    func handlePickWord(_ user: User, _ socketEvent: SocketEvent) {
+    func handlePickWord(_ user: BackendUser, _ socketEvent: SocketEvent) {
         if let room = user.room {
             room.setPickedWord(word: socketEvent.content!)
         }

@@ -15,6 +15,7 @@ public enum EventType: String, Codable {
     case setup
     case updateCanvas
     case drawingPlayerChanged
+    case pickWordFromList
     
     // Client events
     case sendMessage
