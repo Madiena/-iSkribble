@@ -12,6 +12,11 @@ struct DrawingAppApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView()
+            
+            //WebSocketTest(
+            //    userName: "TestUser", roomId: "Test"
+            //)
+            
         }
     }
 }
