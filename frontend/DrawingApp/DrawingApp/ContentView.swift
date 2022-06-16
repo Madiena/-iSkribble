@@ -13,17 +13,27 @@ struct ContentView: View {
     @State private var drawings: [Drawing] = [Drawing]()
     @State private var color: Color = Color.black
     @State private var lineWidth: CGFloat = 3.0
+    @State private var chat: String = ""
+    @State private var messages: [String] = []
+    @State private var isCurrentUser: Bool = true
+    @State private var isPickingWord: Bool = true
+    @State private var word: String = ""
     
     var body: some View {
         VStack(alignment: .center) {
         Text("Draw something!")
             .font(.largeTitle)
             .padding()
-        DrawingPad(currentDrawing: $currentDrawing,
+        /*    if(isPickingWord) {
+                WordEntry(text: word, pickWord: isPickingWord)
+            } else  {*/
+                DrawingPad(currentDrawing: $currentDrawing,
                 drawings: $drawings,
                 color: $color,
                 lineWidth: $lineWidth)
-        DrawingControls(color: $color, drawings: $drawings, lineWidth: $lineWidth)
+                ChatView(chat: chat, messages: messages, isCurrentUser: isCurrentUser)
+                DrawingControls(color: $color, drawings: $drawings, lineWidth: $lineWidth)
+            //}
         }
     }
 }

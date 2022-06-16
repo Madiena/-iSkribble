@@ -42,6 +42,7 @@ struct DrawingPad: View {
             )
         }
         .frame(maxHeight: .infinity)
+        .background(Color.gray.opacity(0.2))
         .gesture(
         DragGesture(minimumDistance: 0.1)
             .onChanged({ (value) in
@@ -59,7 +60,7 @@ struct DrawingPad: View {
             })
         )
     }
-    
+
     private func add(drawing: Drawing, toPath path: inout Path) {
         let points = drawing.path
         if points.count > 1 {

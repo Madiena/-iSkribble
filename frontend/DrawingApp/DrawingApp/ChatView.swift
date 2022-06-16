@@ -8,25 +8,27 @@
 import SwiftUI
 
 struct ChatView: View {
-    @State var chat = ""
+    @State var chat: String = ""
     @State var messages: [String]
     @State var isCurrentUser: Bool
     
       var body: some View {
         NavigationView {
-            VStack {
-                Group {
-                    ForEach(messages, id: \.self) {message in
-                        HStack(alignment: .bottom, spacing: 15) {
-                            if !isCurrentUser{
-                              ContentMessageView(contentMessage: message, isCurrentUser: false)
-                            }
-                            else {
-                                ContentMessageView(contentMessage: message, isCurrentUser: true)
-                            }
+            ZStack(alignment: .bottomTrailing){
+                VStack{
+                        ForEach(messages, id: \.self) { message in
+                         
+                                    if !isCurrentUser{
+                                        ContentMessageView(contentMessage: message, isCurrentUser: false)
+                                    }
+                                    else {
+                                        ContentMessageView(contentMessage: message, isCurrentUser: true)
+                                    }
+                                
                         }
-                    }
-                }.frame(maxHeight: .infinity, alignment: .bottom)
+                        .padding(4)
+                }
+                
             TextField("Enter message", text: $chat)
                   .textFieldStyle(.roundedBorder)
                   .frame(alignment: .bottom)
@@ -35,6 +37,11 @@ struct ChatView: View {
                   .foregroundColor(Color.gray)
                   .navigationBarTitle("Chat", displayMode: .inline)
                   .multilineTextAlignment(.leading)
+                  .onSubmit {
+                      messages.append(chat)
+                      chat = ""
+                  }
+                  .offset(y: 200)
             }
         }
       }
@@ -44,6 +51,6 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(chat: "", messages: ["hi", "ih", "hi","hddfsbfbgk"], isCurrentUser: true)
+        ChatView(chat: "", messages: [], isCurrentUser: true)
     }
 }
