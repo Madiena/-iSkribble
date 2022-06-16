@@ -32,7 +32,9 @@ struct ContentView: View {
                 color: $color,
                 lineWidth: $lineWidth)
                 ChatView(chat: chat, messages: messages, isCurrentUser: isCurrentUser)
+                .offset(y: 50)
                 DrawingControls(color: $color, drawings: $drawings, lineWidth: $lineWidth)
+                .fixedSize(horizontal: 100 != 0, vertical: 50 != 0)
             //}
         }
     }
