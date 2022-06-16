@@ -21,6 +21,8 @@ struct ChatView: View {
                       ContentMessageView(contentMessage: message, isCurrentUser: true)
                   }
               }.listStyle(.sidebar)
+                  .offset(y: -55)
+               .frame(maxHeight: 430)
               TextField("Enter message", text: $chat)
                             .textFieldStyle(.roundedBorder)
                             .frame(alignment: .bottom)
@@ -42,6 +44,6 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView(chat: "", messages: ["hi", "idsdh"], isCurrentUser: true)
+        ChatView(chat: "", messages: ["hi"], isCurrentUser: true)
     }
 }
