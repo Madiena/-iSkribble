@@ -21,10 +21,6 @@ class WebSocketManager: NSObject {
     private var webSocket: WebSocket?
     var delegate: WebSocketManagerDelegate?
     
-    override init() {
-        super.init()
-    }
-    
     func connect(_ to: String) {
         let _ = WebSocket.connect(to: to, on: eventLoop) { ws in
             self.webSocket = ws
@@ -33,10 +29,10 @@ class WebSocketManager: NSObject {
             
             ws.onText {
                 do {
-                    let socketEvent = try JSONSerializer.shared.decoder.decode(SocketEvent.self, from: $1.data(using: .utf8)!)
+                    let socketEvent = try JSONSerializer.decode(SocketEvent.self, from: $1)
                     self.delegate?.handleSocketEvent(socketEvent)
                 } catch {
-                    print($0)
+                    print(error)
                 }
             }
         }

@@ -56,24 +56,45 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
         
         switch socketEvent.type {
             case .sendMessage:
-                DispatchQueue.main.async {
-                    self.messages.append(socketEvent.content!)
-                }
+                handleSendMessage(socketEvent)
             case .setup :
-                do {
-                    let setupData = try JSONSerializer.shared.decoder.decode(SetupData.self, from: socketEvent.content!.data(using: .utf8)!)
-
-                    DispatchQueue.main.async {
-                        self.users = setupData.users
-                        self.ownUser = setupData.ownUser
-                        self.gameData = setupData.gameData
-                    }
-                } catch {
-                    print(error)
-                    disconnect()
-                }
+                handleSetup(socketEvent)
             default:
                 break
+        }
+    }
+    
+    func handleSendMessage(_ socketEvent: SocketEvent) {
+        DispatchQueue.main.async {
+            self.messages.append(socketEvent.content!)
+        }
+    }
+    
+    func handleSetup(_ socketEvent: SocketEvent) {
+        do {
+            let setupData = try JSONSerializer.decode(SetupData.self, from: socketEvent.content!)
+
+            DispatchQueue.main.async {
+                self.users = setupData.users
+                self.ownUser = setupData.ownUser
+                self.gameData = setupData.gameData
+            }
+        } catch {
+            print(error)
+            disconnect()
+        }
+    }
+    
+    func handleUserConnected(_ socketEvent: SocketEvent) {
+        do {
+            let userData = try JSONSerializer.decode(User.self, from: socketEvent.content!)
+            
+            DispatchQueue.main.async {
+                self.users.append(userData)
+            }
+        } catch {
+            print(error)
+            disconnect()
         }
     }
 }
