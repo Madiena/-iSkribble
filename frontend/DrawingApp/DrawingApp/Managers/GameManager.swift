@@ -64,6 +64,10 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
                     try handleUserConnected(socketEvent)
                 case .userDisconnected :
                     try handleUserDisconnected(socketEvent)
+                case .updateGameState:
+                    try handleUpdateGameState(socketEvent)
+                case .updateCanvas:
+                    try handleUpdateCanvas(socketEvent)
                 default:
                     break
             }
@@ -102,6 +106,22 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
         
         DispatchQueue.main.async {
             self.users = self.users.filter { $0.id != userData.id }
+        }
+    }
+    
+    func handleUpdateGameState(_ socketEvent: SocketEvent) throws {
+        let gameData = try JSONSerializer.decode(GameData.self, from: socketEvent.content!)
+        
+        DispatchQueue.main.async {
+            self.gameData = gameData
+        }
+    }
+    
+    func handleUpdateCanvas(_ socketEvent: SocketEvent) throws {
+        let canvasData = try JSONSerializer.decode([Drawing].self, from: socketEvent.content!)
+        
+        DispatchQueue.main.async {
+            self.gameData?.imageData = canvasData
         }
     }
 }
