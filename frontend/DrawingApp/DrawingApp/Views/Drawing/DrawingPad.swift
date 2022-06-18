@@ -9,14 +9,15 @@ import SwiftUI
 import shared
 
 struct DrawingPad: View {
+    @EnvironmentObject var gameManager: GameManager
+    
     @Binding var currentDrawing: Drawing
-    @Binding var drawings: [Drawing]
     @Binding var color: Color
     @Binding var lineWidth: CGFloat
     
     var body: some View {
         Canvas { context, size in
-            for drawing in drawings {
+            for drawing in gameManager.gameData?.imageData ?? [] {
                 context.stroke(
                     Path { path in
                         self.add(drawing: drawing, toPath: &path)
@@ -27,7 +28,7 @@ struct DrawingPad: View {
                         lineCap: .round
                     )
                 )
-
+                
             }
             
             context.stroke(
@@ -44,31 +45,29 @@ struct DrawingPad: View {
         .frame(maxHeight: .infinity)
         .background(Color.gray.opacity(0.2))
         .gesture(
-        DragGesture(minimumDistance: 0.1)
-            .onChanged({ (value) in
-                let currentPoint = value.location
+            DragGesture(minimumDistance: 0.1)
+                .onChanged({ (value) in
+                    let currentPoint = value.location
                     self.currentDrawing.path.append(currentPoint)
-                
-            })
-            .onEnded({ (value) in
-                currentDrawing.lineWidth = lineWidth
-                currentDrawing.color = color
-                
-                drawings.append(self.currentDrawing)
-                
-                currentDrawing.path = []
-            })
+                    
+                })
+                .onEnded({ (value) in
+                    currentDrawing.lineWidth = lineWidth
+                    currentDrawing.color = color
+                    
+                    // TODO: Push drawing to backend
+                    
+                    currentDrawing.path = []
+                })
         )
     }
-
+    
     private func add(drawing: Drawing, toPath path: inout Path) {
         let points = drawing.path
         if points.count > 1 {
             path.move(to: points[0])
-            for i in 0..<points.count-1 {
-                let current = points[i]
-                let next = points[i+1]
-                path.addLine(to: next)
+            for i in 1..<points.count {
+                path.addLine(to: points[i])
             }
         }
     }
@@ -76,6 +75,10 @@ struct DrawingPad: View {
 
 struct DrawingPad_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingPad(currentDrawing: .constant(Drawing(color: Color.black, lineWidth: 3.0)), drawings: .constant([Drawing]()), color: .constant(Color.black), lineWidth: .constant(3))
+        DrawingPad(
+            currentDrawing: .constant(Drawing(color: Color.black, lineWidth: 3.0)),
+            color: .constant(Color.black),
+            lineWidth: .constant(3)
+        )
     }
 }

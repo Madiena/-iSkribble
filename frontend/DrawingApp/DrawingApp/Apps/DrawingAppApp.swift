@@ -9,9 +9,12 @@ import SwiftUI
 
 @main
 struct DrawingAppApp: App {
+    @StateObject var gameManager = GameManager()
+    
     var body: some Scene {
         WindowGroup {
             ContentView()
+                .environmentObject(gameManager)
             
             //WebSocketTest(
             //    userName: "TestUser", roomId: "Test"

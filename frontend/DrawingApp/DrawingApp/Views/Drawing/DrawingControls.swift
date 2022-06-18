@@ -9,8 +9,9 @@ import SwiftUI
 import shared
 
 struct DrawingControls: View {
+    @EnvironmentObject var gameManager: GameManager
+    
     @Binding var color: Color
-    @Binding var drawings: [Drawing]
     @Binding var lineWidth: CGFloat
     
     @State private var colorPickerShown: Bool = false
@@ -23,12 +24,10 @@ struct DrawingControls: View {
                         self.colorPickerShown = true
                     }
                     Button("Undo") {
-                        if self.drawings.count > 0 {
-                            self.drawings.removeLast()
-                        }
+                        // TODO: Add undo logic
                     }
                     Button("Clear") {
-                        self.drawings = [Drawing]()
+                        // TODO: Add clear logic
                     }
                 }
                 HStack {
@@ -50,6 +49,6 @@ struct DrawingControls: View {
 
 struct DrawingControls_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingControls(color: .constant(Color.black), drawings: .constant([Drawing]()), lineWidth: .constant(3))
+        DrawingControls(color: .constant(Color.black), lineWidth: .constant(3))
     }
 }
