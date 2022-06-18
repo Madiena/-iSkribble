@@ -54,13 +54,22 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     func handleSocketEvent(_ socketEvent: SocketEvent) {
         print(socketEvent)
         
-        switch socketEvent.type {
-            case .sendMessage:
-                handleSendMessage(socketEvent)
-            case .setup :
-                handleSetup(socketEvent)
-            default:
-                break
+        do {
+            switch socketEvent.type {
+                case .sendMessage:
+                    handleSendMessage(socketEvent)
+                case .setup :
+                    try handleSetup(socketEvent)
+                case .userConnected :
+                    try handleUserConnected(socketEvent)
+                case .userDisconnected :
+                    try handleUserDisconnected(socketEvent)
+                default:
+                    break
+            }
+        } catch {
+            print(error)
+            disconnect()
         }
     }
     
@@ -70,31 +79,29 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
         }
     }
     
-    func handleSetup(_ socketEvent: SocketEvent) {
-        do {
-            let setupData = try JSONSerializer.decode(SetupData.self, from: socketEvent.content!)
+    func handleSetup(_ socketEvent: SocketEvent) throws {
+        let setupData = try JSONSerializer.decode(SetupData.self, from: socketEvent.content!)
 
-            DispatchQueue.main.async {
-                self.users = setupData.users
-                self.ownUser = setupData.ownUser
-                self.gameData = setupData.gameData
-            }
-        } catch {
-            print(error)
-            disconnect()
+        DispatchQueue.main.async {
+            self.users = setupData.users
+            self.ownUser = setupData.ownUser
+            self.gameData = setupData.gameData
         }
     }
     
-    func handleUserConnected(_ socketEvent: SocketEvent) {
-        do {
-            let userData = try JSONSerializer.decode(User.self, from: socketEvent.content!)
-            
-            DispatchQueue.main.async {
-                self.users.append(userData)
-            }
-        } catch {
-            print(error)
-            disconnect()
+    func handleUserConnected(_ socketEvent: SocketEvent) throws {
+        let userData = try JSONSerializer.decode(User.self, from: socketEvent.content!)
+        
+        DispatchQueue.main.async {
+            self.users.append(userData)
+        }
+    }
+    
+    func handleUserDisconnected(_ socketEvent: SocketEvent) throws {
+        let userData = try JSONSerializer.decode(User.self, from: socketEvent.content!)
+        
+        DispatchQueue.main.async {
+            self.users = self.users.filter { $0.id != userData.id }
         }
     }
 }
