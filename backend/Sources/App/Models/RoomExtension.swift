@@ -78,7 +78,8 @@ extension Room {
         if (guess == gameData.currentWord) {
             gameData.currentWord = ""
             
-            let socketEvent = SocketEvent(type: .sendMessage, content: "\(user.name) guessed right!")
+            // TODO: Give System own id?
+            let socketEvent = SocketEvent(type: .sendMessage, content: Message(author: UUID(), content: "\(user.name) guessed right!").toJSONString())
             
             broadcastToAllUsers(payload: socketEvent)
             
