@@ -12,7 +12,6 @@ struct GameView: View {
     @EnvironmentObject var gameManager: GameManager
     
     @State private var currentDrawing: Drawing = Drawing(color:Color.black, lineWidth: 3.0)
-    @State private var drawings: [Drawing] = [Drawing]()
     @State private var color: Color = Color.black
     @State private var lineWidth: CGFloat = 3.0
     
