@@ -34,16 +34,16 @@
 		588AFED22852476A007FB744 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
 		E12921B128575537002443CB /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		E12921B32857589F002443CB /* ContentMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMessageView.swift; sourceTree = "<group>"; };
-		E172EE1C2844FE52001E64E6 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingPad.swift; path = DrawingApp/DrawingPad.swift; sourceTree = SOURCE_ROOT; };
-		E172EE1E28451693001E64E6 /* DrawingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingControls.swift; path = DrawingApp/DrawingControls.swift; sourceTree = SOURCE_ROOT; };
+		E172EE1C2844FE52001E64E6 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingPad.swift; path = DrawingApp/Views/Drawing/DrawingPad.swift; sourceTree = SOURCE_ROOT; };
+		E172EE1E28451693001E64E6 /* DrawingControls.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingControls.swift; path = DrawingApp/Views/Drawing/DrawingControls.swift; sourceTree = SOURCE_ROOT; };
 		E17FF31A2844F9A60073D6CE /* DrawingApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DrawingApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E17FF31D2844F9A60073D6CE /* DrawingAppApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingAppApp.swift; sourceTree = "<group>"; };
-		E17FF31F2844F9A60073D6CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = DrawingApp/ContentView.swift; sourceTree = SOURCE_ROOT; };
+		E17FF31F2844F9A60073D6CE /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = DrawingApp/Views/ContentView.swift; sourceTree = SOURCE_ROOT; };
 		E17FF3212844F9A80073D6CE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E17FF3242844F9A80073D6CE /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		E184CB39284E0A47002FA4EE /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorPicker.swift; path = DrawingApp/ColorPicker.swift; sourceTree = SOURCE_ROOT; };
-		E184CB3B284E0B66002FA4EE /* ColorEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorEntry.swift; path = DrawingApp/ColorEntry.swift; sourceTree = SOURCE_ROOT; };
-		E184CB3D284E0C64002FA4EE /* ColorsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorsProvider.swift; path = DrawingApp/ColorsProvider.swift; sourceTree = SOURCE_ROOT; };
+		E184CB39284E0A47002FA4EE /* ColorPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorPicker.swift; path = DrawingApp/Views/Drawing/ColorPicker.swift; sourceTree = SOURCE_ROOT; };
+		E184CB3B284E0B66002FA4EE /* ColorEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorEntry.swift; path = DrawingApp/Views/Drawing/ColorEntry.swift; sourceTree = SOURCE_ROOT; };
+		E184CB3D284E0C64002FA4EE /* ColorsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorsProvider.swift; path = DrawingApp/Providers/ColorsProvider.swift; sourceTree = SOURCE_ROOT; };
 		E184CB40284E268C002FA4EE /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -64,6 +64,43 @@
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		586968AF285DB98C005D5843 /* Apps */ = {
+			isa = PBXGroup;
+			children = (
+				E17FF31D2844F9A60073D6CE /* DrawingAppApp.swift */,
+			);
+			path = Apps;
+			sourceTree = "<group>";
+		};
+		586968B0285DB99C005D5843 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				586968B1285DB9D5005D5843 /* Drawing */,
+				582F7AF6285741D3001D3D9B /* WordEntry.swift */,
+				E17FF31F2844F9A60073D6CE /* ContentView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		586968B1285DB9D5005D5843 /* Drawing */ = {
+			isa = PBXGroup;
+			children = (
+				E184CB3B284E0B66002FA4EE /* ColorEntry.swift */,
+				E172EE1C2844FE52001E64E6 /* DrawingPad.swift */,
+				E172EE1E28451693001E64E6 /* DrawingControls.swift */,
+				E184CB39284E0A47002FA4EE /* ColorPicker.swift */,
+			);
+			path = Drawing;
+			sourceTree = "<group>";
+		};
+		586968B2285DB9FB005D5843 /* Providers */ = {
+			isa = PBXGroup;
+			children = (
+				E184CB3D284E0C64002FA4EE /* ColorsProvider.swift */,
+			);
+			path = Providers;
 			sourceTree = "<group>";
 		};
 		588AFECF285244BD007FB744 /* Managers */ = {
@@ -95,17 +132,12 @@
 		E17FF31C2844F9A60073D6CE /* DrawingApp */ = {
 			isa = PBXGroup;
 			children = (
+				586968B2285DB9FB005D5843 /* Providers */,
+				586968B0285DB99C005D5843 /* Views */,
+				586968AF285DB98C005D5843 /* Apps */,
 				588AFECF285244BD007FB744 /* Managers */,
-				E17FF31D2844F9A60073D6CE /* DrawingAppApp.swift */,
-				E17FF31F2844F9A60073D6CE /* ContentView.swift */,
 				E17FF3212844F9A80073D6CE /* Assets.xcassets */,
 				E17FF3232844F9A80073D6CE /* Preview Content */,
-				E172EE1C2844FE52001E64E6 /* DrawingPad.swift */,
-				E172EE1E28451693001E64E6 /* DrawingControls.swift */,
-				E184CB39284E0A47002FA4EE /* ColorPicker.swift */,
-				582F7AF6285741D3001D3D9B /* WordEntry.swift */,
-				E184CB3B284E0B66002FA4EE /* ColorEntry.swift */,
-				E184CB3D284E0C64002FA4EE /* ColorsProvider.swift */,
 				E184CB40284E268C002FA4EE /* .gitignore */,
 				58211AAC28523AC4008537A9 /* shared */,
 				E12921B128575537002443CB /* ChatView.swift */,
