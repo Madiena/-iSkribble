@@ -14,7 +14,7 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     @Published var users: [User] = []
     @Published var ownUser: UUID? = nil
     @Published var gameData: GameData? = nil
-    @Published var messages: [String] = []
+    @Published var messages: [Message] = []
     @Published var isConnected = false
     
     override init() {
@@ -57,7 +57,7 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
         do {
             switch socketEvent.type {
                 case .sendMessage:
-                    handleSendMessage(socketEvent)
+                    try handleSendMessage(socketEvent)
                 case .setup :
                     try handleSetup(socketEvent)
                 case .userConnected :
@@ -77,9 +77,11 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
         }
     }
     
-    func handleSendMessage(_ socketEvent: SocketEvent) {
+    func handleSendMessage(_ socketEvent: SocketEvent) throws {
+        let messageData = try JSONSerializer.decode(Message.self, from: socketEvent.content!)
+
         DispatchQueue.main.async {
-            self.messages.append(socketEvent.content!)
+            self.messages.append(messageData)
         }
     }
     
@@ -123,5 +125,9 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
         DispatchQueue.main.async {
             self.gameData?.imageData = canvasData
         }
+    }
+    
+    public func sendMessage(_ message: String) {
+        webSocketManager.sendSocketEvent(SocketEvent(type: .sendMessage, content: message))
     }
 }

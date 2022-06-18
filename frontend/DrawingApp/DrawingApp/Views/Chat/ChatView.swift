@@ -15,8 +15,7 @@ struct ChatView: View {
     var body: some View {
       ZStack(){
           List(gameManager.messages, id: \.self) { message in
-              // TODO: Add proper isCurrentUserCheck
-              ContentMessageView(contentMessage: message, isCurrentUser: true)
+              ContentMessageView(contentMessage: message.content, isCurrentUser: message.author == gameManager.ownUser)
           }.listStyle(.sidebar)
               .offset(y: -55)
            .frame(maxHeight: 430)
@@ -29,7 +28,7 @@ struct ChatView: View {
                         .navigationBarTitle("Chat", displayMode: .inline)
                         .multilineTextAlignment(.leading)
                         .onSubmit {
-                            // TODO: Submit message
+                            gameManager.sendMessage(chat)
                             chat = ""
                         }
                         .offset(y: 200)

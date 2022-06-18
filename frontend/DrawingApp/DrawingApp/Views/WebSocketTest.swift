@@ -25,7 +25,7 @@ struct WebSocketTest: View {
                 }
                 
                 ForEach(gameManager.messages, id: \.self) { message in
-                    Text(message)
+                    Text(message.content)
                 }
                 
                 Button("Disconnect") {

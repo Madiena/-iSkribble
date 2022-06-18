@@ -54,7 +54,15 @@ struct WebsocketController: RouteCollection {
     func handleSendMessage(_ user: BackendUser, _ socketEvent: SocketEvent) {
         if let room = user.room {
             room.processGuess(user: user, guess: socketEvent.content!)
-            room.broadcastToAllUsers(payload: socketEvent)
+            room.broadcastToAllUsers(
+                payload: SocketEvent(
+                    type: .sendMessage,
+                    content: Message(
+                        author: user.id,
+                        content: socketEvent.content!
+                    ).toJSONString()
+                )
+            )
         }
     }
     
