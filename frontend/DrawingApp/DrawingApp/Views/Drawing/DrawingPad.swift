@@ -55,7 +55,7 @@ struct DrawingPad: View {
                     currentDrawing.lineWidth = lineWidth
                     currentDrawing.color = color
                     
-                    // TODO: Push drawing to backend
+                    gameManager.sendDrawing(currentDrawing)
                     
                     currentDrawing.path = []
                 })

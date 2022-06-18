@@ -130,4 +130,8 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     public func sendMessage(_ message: String) {
         webSocketManager.sendSocketEvent(SocketEvent(type: .sendMessage, content: message))
     }
+    
+    public func sendDrawing(_ drawing: Drawing) {
+        webSocketManager.sendSocketEvent(SocketEvent(type: .addDrawingToCanvas, content: drawing.toJSONString()))
+    }
 }
