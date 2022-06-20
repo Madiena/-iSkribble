@@ -23,17 +23,27 @@ struct DrawingControls: View {
                     Button("Pick color") {
                         self.colorPickerShown = true
                     }
+                    .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
                     Button("Undo") {
                         gameManager.undoDrawing()
                     }
+                    .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
                     Button("Clear") {
                         gameManager.clearCanvas()
                     }
+                    .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
+                    Button(action: { colorPickerShown = false
+                    }) {
+                        Image(systemName: "checkmark")
+                    }
+                    .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
                 }
                 HStack {
                     Text("Pencil width")
+                        .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
                         .padding()
                     Slider(value: $lineWidth, in: 1.0...15.0, step: 1.0)
+                        .tint(Color(red: 0.7, green: 0.7, blue: 0.9))
                         .padding()
                 }
             }
