@@ -10,25 +10,22 @@ import SwiftUI
 struct ColorInfo: Identifiable {
     let id: Int
     let displayName: String
-    let color: Color
+    let color: CGColor
     
 }
 
 class ColorsProvider {
     static func supportedColors() -> [ColorInfo] {
-        return [ColorInfo(id: 1, displayName: "Black", color: Color.black),
-                ColorInfo(id: 2, displayName: "Blue", color: Color.blue),
-                ColorInfo(id: 3, displayName: "Brown", color: Color.brown),
-                ColorInfo(id: 4, displayName: "Gray", color: Color.gray),
-                ColorInfo(id: 5, displayName: "Green", color: Color.green),
-                ColorInfo(id: 6, displayName: "Indigo", color: Color.indigo),
-                ColorInfo(id: 7, displayName: "Mint", color: Color.mint),
-                ColorInfo(id: 8, displayName: "Cyan", color: Color.cyan),
-                ColorInfo(id: 9, displayName: "Orange", color: Color.orange),
-                ColorInfo(id: 10, displayName: "Pink", color: Color.pink),
-                ColorInfo(id: 11, displayName: "Purple", color: Color.purple),
-                ColorInfo(id: 12, displayName: "Red", color: Color.red),
-                ColorInfo(id: 13, displayName: "Yellow", color: Color.yellow),
-                ColorInfo(id: 14, displayName: "White", color: Color.white)]
+        return [ColorInfo(id: 1, displayName: "Black", color: UIColor.black.cgColor),
+                ColorInfo(id: 2, displayName: "Blue", color: UIColor.blue.cgColor),
+                ColorInfo(id: 3, displayName: "Brown", color: UIColor.brown.cgColor),
+                ColorInfo(id: 4, displayName: "Gray", color: UIColor.gray.cgColor),
+                ColorInfo(id: 5, displayName: "Green", color: UIColor.green.cgColor),
+                ColorInfo(id: 6, displayName: "Cyan", color: UIColor.cyan.cgColor),
+                ColorInfo(id: 7, displayName: "Orange", color: UIColor.orange.cgColor),
+                ColorInfo(id: 8, displayName: "Purple", color: UIColor.purple.cgColor),
+                ColorInfo(id: 9, displayName: "Red", color: UIColor.red.cgColor),
+                ColorInfo(id: 10, displayName: "Yellow", color: UIColor.yellow.cgColor),
+                ColorInfo(id: 11, displayName: "White", color: UIColor.white.cgColor)]
     }
 }

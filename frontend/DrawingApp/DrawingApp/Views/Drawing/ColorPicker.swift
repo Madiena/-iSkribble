@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct ColorPicker: View {
-    @Binding var color: Color
+    @Binding var color: CGColor
     @Binding var colorPickerShown: Bool
     
     private let colors = ColorsProvider.supportedColors()
@@ -26,6 +26,6 @@ struct ColorPicker: View {
 struct ColorPicker_Previews: PreviewProvider {
   
     static var previews: some View {
-        ColorPicker(color: .constant(Color.black), colorPickerShown: .constant(true))
+        ColorPicker(color: .constant(CGColor(red: 0, green: 0, blue: 0, alpha: 0)), colorPickerShown: .constant(true))
     }
 }
