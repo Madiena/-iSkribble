@@ -31,7 +31,7 @@ struct ChatView: View {
                             gameManager.sendMessage(chat)
                             chat = ""
                         }
-                        .offset(y: 200)
+                        .offset(y: 80)
         }
     }
    
@@ -40,6 +40,6 @@ struct ChatView: View {
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
-        ChatView()
+        ChatView().environmentObject(GameManager())
     }
 }
