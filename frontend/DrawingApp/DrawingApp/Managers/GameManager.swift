@@ -16,6 +16,7 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     @Published var gameData: GameData? = nil
     @Published var messages: [Message] = []
     @Published var isConnected = false
+    @Published var ownUserIsDrawing = false
     
     override init() {
         super.init()
@@ -48,6 +49,7 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
             self.users = []
             self.ownUser = nil
             self.gameData = nil
+            self.ownUserIsDrawing = false
         }
     }
     
@@ -116,6 +118,7 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
         
         DispatchQueue.main.async {
             self.gameData = gameData
+            self.ownUserIsDrawing = gameData.currentUserDrawing == self.ownUser
         }
     }
     
