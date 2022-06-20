@@ -25,6 +25,7 @@
 		E184CB3E284E0C64002FA4EE /* ColorsProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E184CB3D284E0C64002FA4EE /* ColorsProvider.swift */; };
 		E184CB3F284E1EED002FA4EE /* ColorEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = E184CB3B284E0B66002FA4EE /* ColorEntry.swift */; };
 		E184CB41284E268C002FA4EE /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = E184CB40284E268C002FA4EE /* .gitignore */; };
+		E1B43DE928608B13005997E6 /* DrawingControlsButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E1B43DE828608B13005997E6 /* DrawingControlsButtonView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -47,6 +48,7 @@
 		E184CB3B284E0B66002FA4EE /* ColorEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorEntry.swift; path = DrawingApp/Views/Drawing/ColorEntry.swift; sourceTree = SOURCE_ROOT; };
 		E184CB3D284E0C64002FA4EE /* ColorsProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ColorsProvider.swift; path = DrawingApp/Providers/ColorsProvider.swift; sourceTree = SOURCE_ROOT; };
 		E184CB40284E268C002FA4EE /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		E1B43DE828608B13005997E6 /* DrawingControlsButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawingControlsButtonView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -96,6 +98,7 @@
 				E172EE1C2844FE52001E64E6 /* DrawingPad.swift */,
 				E172EE1E28451693001E64E6 /* DrawingControls.swift */,
 				E184CB39284E0A47002FA4EE /* ColorPicker.swift */,
+				E1B43DE828608B13005997E6 /* DrawingControlsButtonView.swift */,
 			);
 			path = Drawing;
 			sourceTree = "<group>";
@@ -246,6 +249,7 @@
 				588AFED32852476A007FB744 /* WebSocketManager.swift in Sources */,
 				586968B7285E050B005D5843 /* GameView.swift in Sources */,
 				E12921B228575537002443CB /* ChatView.swift in Sources */,
+				E1B43DE928608B13005997E6 /* DrawingControlsButtonView.swift in Sources */,
 				E172EE1D2844FE52001E64E6 /* DrawingPad.swift in Sources */,
 				E12921B42857589F002443CB /* ContentMessageView.swift in Sources */,
 				E184CB3A284E0A47002FA4EE /* ColorPicker.swift in Sources */,
