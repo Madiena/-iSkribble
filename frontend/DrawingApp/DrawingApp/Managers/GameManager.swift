@@ -137,4 +137,12 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     public func sendDrawing(_ drawing: Drawing) {
         webSocketManager.sendSocketEvent(SocketEvent(type: .addDrawingToCanvas, content: drawing.toJSONString()))
     }
+    
+    public func undoDrawing() {
+        webSocketManager.sendSocketEvent(SocketEvent(type: .undoDrawing, content: nil))
+    }
+    
+    public func clearCanvas() {
+        webSocketManager.sendSocketEvent(SocketEvent(type: .clearCanvas, content: nil))
+    }
 }

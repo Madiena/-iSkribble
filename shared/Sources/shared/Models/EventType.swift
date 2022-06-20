@@ -21,4 +21,6 @@ public enum EventType: String, Codable {
     case sendMessage
     case addDrawingToCanvas
     case pickWord
+    case undoDrawing
+    case clearCanvas
 }

@@ -24,10 +24,10 @@ struct DrawingControls: View {
                         self.colorPickerShown = true
                     }
                     Button("Undo") {
-                        // TODO: Add undo logic
+                        gameManager.undoDrawing()
                     }
                     Button("Clear") {
-                        // TODO: Add clear logic
+                        gameManager.clearCanvas()
                     }
                 }
                 HStack {

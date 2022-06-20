@@ -46,6 +46,10 @@ struct WebsocketController: RouteCollection {
                 handleAddDrawingToCanvas(user, socketEvent)
             case .pickWord:
                 handlePickWord(user, socketEvent)
+            case .undoDrawing:
+                handleUndoDrawing(user)
+            case .clearCanvas:
+                handleClearCanvas(user)
             default:
                 break
         }
@@ -79,6 +83,18 @@ struct WebsocketController: RouteCollection {
     func handlePickWord(_ user: BackendUser, _ socketEvent: SocketEvent) {
         if let room = user.room {
             room.setPickedWord(word: socketEvent.content!)
+        }
+    }
+
+    func handleUndoDrawing(_ user: BackendUser) {
+        if let room = user.room {
+            room.undoDrawing()
+        }
+    }
+
+    func handleClearCanvas(_ user: BackendUser) {
+        if let room = user.room {
+            room.clearCanvas()
         }
     }
 }
