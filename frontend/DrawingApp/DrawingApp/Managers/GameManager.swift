@@ -49,6 +49,7 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
             self.users = []
             self.ownUser = nil
             self.gameData = nil
+            self.ownUserIsDrawing = false
         }
     }
     
