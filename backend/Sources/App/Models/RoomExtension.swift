@@ -104,4 +104,8 @@ extension Room {
         
         broadcastToAllUsers(payload: SocketEvent(type: .updateCanvas, content: gameData.imageData.toJSONString()))
     }
+
+    func userIsDrawing(_ userId: UUID) -> Bool {
+        return gameData.currentUserDrawing == userId
+    }
 }
