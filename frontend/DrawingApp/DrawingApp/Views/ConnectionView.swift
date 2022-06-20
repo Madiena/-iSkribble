@@ -19,6 +19,7 @@ struct ConnectionView: View {
                 .font(.title)
                 .fontWeight(.bold)
                 .multilineTextAlignment(.center)
+                .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
             
             TextField(
                 "Room",
@@ -26,6 +27,7 @@ struct ConnectionView: View {
             )
             .frame(width: 200.0, height: 50.0)
             .textFieldStyle(.roundedBorder)
+            .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
             
             TextField(
                 "Name",
@@ -33,6 +35,7 @@ struct ConnectionView: View {
             )
             .frame(width: 200.0, height: 50.0)
             .textFieldStyle(.roundedBorder)
+            .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
             
             if (roomId.count > 0 && userName.count > 0) {
                 Button("Connect") {
