@@ -12,6 +12,7 @@ struct DrawingControls: View {
     @EnvironmentObject var gameManager: GameManager
     
     @State private var colorPickerShown: Bool = false
+    @Binding var drawingsControlsShown: Bool
     
     var body: some View {
         NavigationView {
@@ -29,7 +30,7 @@ struct DrawingControls: View {
                         gameManager.clearCanvas()
                     }
                     .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
-                    Button(action: { colorPickerShown = false
+                    Button(action: { drawingsControlsShown = false
                     }) {
                         Image(systemName: "checkmark")
                     }
@@ -59,7 +60,7 @@ struct DrawingControls: View {
 
 struct DrawingControls_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingControls()
+        DrawingControls(drawingsControlsShown: .constant(true))
             .environmentObject(GameManager())
     }
 }

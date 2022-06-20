@@ -21,7 +21,7 @@ struct DrawingControlsButtonView: View {
                 .foregroundColor(Color(red: 0.7, green: 0.7, blue: 0.9))
         }
         .sheet(isPresented: $drawingControlsShown) {
-            DrawingControls()
+            DrawingControls(drawingsControlsShown: $drawingControlsShown)
         }
     }
 }
