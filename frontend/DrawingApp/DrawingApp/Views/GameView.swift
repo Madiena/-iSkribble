@@ -17,9 +17,12 @@ struct GameView: View {
         VStack(alignment: .center) {
             ZStack {
                 DrawingPad()
-                .frame(width: 310, height: 310, alignment: .center)
-               DrawingControlsButtonView(drawingControlsShown: drawingControlShown)
-                    .offset(x: -120, y: 70)
+                    .frame(width: 310, height: 310, alignment: .center)
+                
+                if (gameManager.ownUserIsDrawing) {
+                    DrawingControlsButtonView(drawingControlsShown: drawingControlShown)
+                        .offset(x: -120, y: 70)
+                }
             }
             ChatView()
                 .frame(width: 310, height: 210, alignment: .center)

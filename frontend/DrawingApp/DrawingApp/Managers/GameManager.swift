@@ -19,7 +19,7 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     @Published var isConnected = false
     @Published var ownUserIsDrawing = false
     
-    @Published var currentDrawing: Drawing = Drawing(color:Color.black, lineWidth: 3.0)
+    @Published var currentDrawing: Drawing = Drawing(color: CGColor(red: 0, green: 0, blue: 0, alpha: 1), lineWidth: 3.0)
     
     override init() {
         super.init()

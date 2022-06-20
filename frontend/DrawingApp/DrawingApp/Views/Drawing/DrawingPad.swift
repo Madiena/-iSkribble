@@ -18,7 +18,7 @@ struct DrawingPad: View {
                     Path { path in
                         self.add(drawing: drawing, toPath: &path)
                     },
-                    with: .color(drawing.color),
+                    with: .color(Color(drawing.color)),
                     style: StrokeStyle(
                         lineWidth: drawing.lineWidth,
                         lineCap: .round
@@ -31,7 +31,7 @@ struct DrawingPad: View {
                 Path { path in
                     self.add(drawing: gameManager.currentDrawing, toPath: &path)
                 },
-                with: .color(gameManager.currentDrawing.color),
+                with: .color(Color(gameManager.currentDrawing.color)),
                 style: StrokeStyle(
                     lineWidth: gameManager.currentDrawing.lineWidth,
                     lineCap: .round
@@ -51,7 +51,8 @@ struct DrawingPad: View {
                     gameManager.sendDrawing()
                     
                     gameManager.currentDrawing.path = []
-                })
+                }),
+            including: gameManager.ownUserIsDrawing ? .all : .none
         )
     }
     

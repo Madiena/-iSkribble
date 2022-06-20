@@ -7,11 +7,10 @@
 
 import Foundation
 import CoreGraphics
-import SwiftUI
 
 public struct Drawing: Codable {
     public var path: [CGPoint]
-    public var color: Color
+    public var color: CGColor
     public var lineWidth: CGFloat
     
     enum CodingKeys: String, CodingKey {
@@ -20,7 +19,7 @@ public struct Drawing: Codable {
         case lineWidth = "lineWidth"
     }
     
-    public init(path: [CGPoint] = [], color: Color, lineWidth: CGFloat) {
+    public init(path: [CGPoint] = [], color: CGColor, lineWidth: CGFloat) {
         self.path = path
         self.color = color
         self.lineWidth = lineWidth
@@ -33,11 +32,11 @@ public struct Drawing: Codable {
         path = tempPath.map { CGPoint(x: $0[0], y: $0[1]) }
         
         let tempColor = try values.decode(Array<CGFloat>.self, forKey: .color)
-        color = Color(
-            red: CGFloat(tempColor[0]),
-            green: CGFloat(tempColor[1]),
-            blue: CGFloat(tempColor[2]),
-            opacity: CGFloat(tempColor[3])
+        color = CGColor(
+            red: tempColor[0],
+            green: tempColor[1],
+            blue: tempColor[2],
+            alpha: tempColor[3]
         )
         
         lineWidth = try values.decode(CGFloat.self, forKey: .lineWidth)
@@ -47,7 +46,7 @@ public struct Drawing: Codable {
         var container = encoder.container(keyedBy: CodingKeys.self)
 
         try container.encode(path.map { [$0.x, $0.y] }, forKey: .path)
-        try container.encode(color.cgColor?.components, forKey: .color)
+        try container.encode(color.components, forKey: .color)
         try container.encode(Float(lineWidth), forKey: .lineWidth)
     }
 }
