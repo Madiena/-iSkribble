@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		58211AAF28523AD9008537A9 /* shared in Frameworks */ = {isa = PBXBuildFile; productRef = 58211AAE28523AD9008537A9 /* shared */; };
 		582F7AF7285741D3001D3D9B /* WordEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582F7AF6285741D3001D3D9B /* WordEntry.swift */; };
-		582F7AFB285743DA001D3D9B /* WebSocketTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 582F7AFA285743DA001D3D9B /* WebSocketTest.swift */; };
 		586968B5285E0412005D5843 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586968B4285E0412005D5843 /* ConnectionView.swift */; };
 		586968B7285E050B005D5843 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586968B6285E050B005D5843 /* GameView.swift */; };
 		588AFED1285244CB007FB744 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588AFED0285244CB007FB744 /* GameManager.swift */; };
@@ -31,7 +30,6 @@
 /* Begin PBXFileReference section */
 		58211AAC28523AC4008537A9 /* shared */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = shared; path = ../../../shared; sourceTree = "<group>"; };
 		582F7AF6285741D3001D3D9B /* WordEntry.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WordEntry.swift; sourceTree = "<group>"; };
-		582F7AFA285743DA001D3D9B /* WebSocketTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketTest.swift; sourceTree = "<group>"; };
 		586968B4285E0412005D5843 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
 		586968B6285E050B005D5843 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		588AFED0285244CB007FB744 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
@@ -85,7 +83,6 @@
 				586968B1285DB9D5005D5843 /* Drawing */,
 				582F7AF6285741D3001D3D9B /* WordEntry.swift */,
 				E17FF31F2844F9A60073D6CE /* ContentView.swift */,
-				582F7AFA285743DA001D3D9B /* WebSocketTest.swift */,
 				586968B4285E0412005D5843 /* ConnectionView.swift */,
 				586968B6285E050B005D5843 /* GameView.swift */,
 			);
@@ -252,7 +249,6 @@
 				E172EE1D2844FE52001E64E6 /* DrawingPad.swift in Sources */,
 				E12921B42857589F002443CB /* ContentMessageView.swift in Sources */,
 				E184CB3A284E0A47002FA4EE /* ColorPicker.swift in Sources */,
-				582F7AFB285743DA001D3D9B /* WebSocketTest.swift in Sources */,
 				E17FF3202844F9A60073D6CE /* ContentView.swift in Sources */,
 				586968B5285E0412005D5843 /* ConnectionView.swift in Sources */,
 				E184CB3F284E1EED002FA4EE /* ColorEntry.swift in Sources */,
