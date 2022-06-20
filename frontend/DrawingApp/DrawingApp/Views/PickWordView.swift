@@ -12,9 +12,11 @@ struct PickWordView: View {
     
     
     var body: some View {
-        ForEach (gameManager.wordsToPickFrom ?? [], id: \.self) { word in
-            Button(word) {
-                gameManager.pickWord(word)
+        VStack {
+            ForEach (gameManager.wordsToPickFrom ?? [], id: \.self) { word in
+                Button(word) {
+                    gameManager.pickWord(word)
+                }.buttonStyle(.borderedProminent)
             }
         }
     }

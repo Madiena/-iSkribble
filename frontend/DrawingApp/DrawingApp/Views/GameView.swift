@@ -10,27 +10,27 @@ import shared
 
 struct GameView: View {
     @EnvironmentObject var gameManager: GameManager
-    
-    @State var drawingControlShown: Bool = true
+    @State var drawingControlShown: Bool = false
     
     var body: some View {
         VStack(alignment: .center) {
-            ZStack {
-                DrawingPad()
-                    .frame(width: 310, height: 310, alignment: .center)
-                
-                if (gameManager.ownUserIsDrawing) {
-                    DrawingControlsButtonView(drawingControlsShown: drawingControlShown)
-                        .offset(x: -120, y: 70)
+            if (gameManager.wordsToPickFrom == nil) {
+                ZStack {
+                    DrawingPad()
+                        .frame(width: 310, height: 310, alignment: .center)
+                    
+                    if (gameManager.ownUserIsDrawing) {
+                        DrawingControlsButtonView(drawingControlsShown: drawingControlShown)
+                            .offset(x: -120, y: 70)
+                    }
                 }
+            }
+            else {
+                PickWordView()
             }
             ChatView()
                 .frame(width: 310, height: 210, alignment: .center)
         }
-        .sheet(isPresented: (gameManager.wordsToPickFrom != nil), content: {
-            PickWordView()
-        })
-        .interactiveDismissDisabled(true)
     }
 }
 
