@@ -163,6 +163,6 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     
     public func pickWord(_ word: String) {
         webSocketManager.sendSocketEvent(SocketEvent(type: .pickWord, content: word))
-        wordsToPickFrom = []
+        wordsToPickFrom = nil
     }
 }
