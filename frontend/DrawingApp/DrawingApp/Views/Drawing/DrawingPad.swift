@@ -11,10 +11,6 @@ import shared
 struct DrawingPad: View {
     @EnvironmentObject var gameManager: GameManager
     
-    @Binding var currentDrawing: Drawing
-    @Binding var color: Color
-    @Binding var lineWidth: CGFloat
-    
     var body: some View {
         Canvas { context, size in
             for drawing in gameManager.gameData?.imageData ?? [] {
@@ -33,11 +29,11 @@ struct DrawingPad: View {
             
             context.stroke(
                 Path { path in
-                    self.add(drawing: currentDrawing, toPath: &path)
+                    self.add(drawing: gameManager.currentDrawing, toPath: &path)
                 },
-                with: .color(color),
+                with: .color(gameManager.currentDrawing.color),
                 style: StrokeStyle(
-                    lineWidth: lineWidth,
+                    lineWidth: gameManager.currentDrawing.lineWidth,
                     lineCap: .round
                 )
             )
@@ -48,16 +44,13 @@ struct DrawingPad: View {
             DragGesture(minimumDistance: 0.1)
                 .onChanged({ (value) in
                     let currentPoint = value.location
-                    self.currentDrawing.path.append(currentPoint)
+                    gameManager.currentDrawing.path.append(currentPoint)
                     
                 })
                 .onEnded({ (value) in
-                    currentDrawing.lineWidth = lineWidth
-                    currentDrawing.color = color
+                    gameManager.sendDrawing()
                     
-                    gameManager.sendDrawing(currentDrawing)
-                    
-                    currentDrawing.path = []
+                    gameManager.currentDrawing.path = []
                 })
         )
     }
@@ -75,10 +68,7 @@ struct DrawingPad: View {
 
 struct DrawingPad_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingPad(
-            currentDrawing: .constant(Drawing(color: Color.black, lineWidth: 3.0)),
-            color: .constant(Color.black),
-            lineWidth: .constant(3)
-        )
+        DrawingPad()
+            .environmentObject(GameManager())
     }
 }

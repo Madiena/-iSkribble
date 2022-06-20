@@ -11,9 +11,6 @@ import shared
 struct DrawingControls: View {
     @EnvironmentObject var gameManager: GameManager
     
-    @Binding var color: Color
-    @Binding var lineWidth: CGFloat
-    
     @State private var colorPickerShown: Bool = false
     
     var body: some View {
@@ -42,7 +39,7 @@ struct DrawingControls: View {
                     Text("Pencil width")
                         .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
                         .padding()
-                    Slider(value: $lineWidth, in: 1.0...15.0, step: 1.0)
+                    Slider(value: $gameManager.currentDrawing.lineWidth, in: 1.0...15.0, step: 1.0)
                         .tint(Color(red: 0.7, green: 0.7, blue: 0.9))
                         .padding()
                 }
@@ -52,13 +49,17 @@ struct DrawingControls: View {
         .sheet(isPresented: $colorPickerShown, onDismiss: {
             self.colorPickerShown = false
         }, content: { () -> ColorPicker in
-            ColorPicker(color: self.$color, colorPickerShown: self.$colorPickerShown)
+            ColorPicker(
+                color: $gameManager.currentDrawing.color,
+                colorPickerShown: self.$colorPickerShown
+            )
         })
     }
 }
 
 struct DrawingControls_Previews: PreviewProvider {
     static var previews: some View {
-        DrawingControls(color: .constant(Color.black), lineWidth: .constant(3))
+        DrawingControls()
+            .environmentObject(GameManager())
     }
 }

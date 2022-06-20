@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import SwiftUI
 import shared
 
 class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
@@ -17,6 +18,8 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     @Published var messages: [Message] = []
     @Published var isConnected = false
     @Published var ownUserIsDrawing = false
+    
+    @Published var currentDrawing: Drawing = Drawing(color:Color.black, lineWidth: 3.0)
     
     override init() {
         super.init()
@@ -134,8 +137,8 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
         webSocketManager.sendSocketEvent(SocketEvent(type: .sendMessage, content: message))
     }
     
-    public func sendDrawing(_ drawing: Drawing) {
-        webSocketManager.sendSocketEvent(SocketEvent(type: .addDrawingToCanvas, content: drawing.toJSONString()))
+    public func sendDrawing() {
+        webSocketManager.sendSocketEvent(SocketEvent(type: .addDrawingToCanvas, content: currentDrawing.toJSONString()))
     }
     
     public func undoDrawing() {
