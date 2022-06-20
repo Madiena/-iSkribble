@@ -46,6 +46,10 @@ struct WebsocketController: RouteCollection {
                 handleAddDrawingToCanvas(user, socketEvent)
             case .pickWord:
                 handlePickWord(user, socketEvent)
+            case .undoDrawing:
+                handleUndoDrawing(user)
+            case .clearCanvas:
+                handleClearCanvas(user)
             default:
                 break
         }
@@ -53,7 +57,10 @@ struct WebsocketController: RouteCollection {
     
     func handleSendMessage(_ user: BackendUser, _ socketEvent: SocketEvent) {
         if let room = user.room {
-            room.processGuess(user: user, guess: socketEvent.content!)
+            if (!room.userIsDrawing(user.id)) {
+                room.processGuess(user: user, guess: socketEvent.content!)
+            }
+
             room.broadcastToAllUsers(
                 payload: SocketEvent(
                     type: .sendMessage,
@@ -67,18 +74,56 @@ struct WebsocketController: RouteCollection {
     }
     
     func handleAddDrawingToCanvas(_ user: BackendUser, _ socketEvent: SocketEvent) {
+        guard let room = user.room else {
+            return
+        }
+
+        if (!room.userIsDrawing(user.id)) {
+            return
+        }
+
         do {
             let drawing = try JSONSerializer.shared.decoder.decode(Drawing.self, from: socketEvent.content!.data(using: .utf8)!)
             
-            if let room = user.room {
-                room.addDrawingToCanvas(drawing: drawing)
-            }
-        } catch {}
+            room.addDrawingToCanvas(drawing: drawing)
+        } catch {
+            print(error)
+        }
     }
     
     func handlePickWord(_ user: BackendUser, _ socketEvent: SocketEvent) {
-        if let room = user.room {
-            room.setPickedWord(word: socketEvent.content!)
+        guard let room = user.room else {
+            return
         }
+
+        if (!room.userIsDrawing(user.id)) {
+            return
+        }
+
+        room.setPickedWord(word: socketEvent.content!)
+    }
+
+    func handleUndoDrawing(_ user: BackendUser) {
+        guard let room = user.room else {
+            return
+        }
+
+        if (!room.userIsDrawing(user.id)) {
+            return
+        }
+
+        room.undoDrawing()
+    }
+
+    func handleClearCanvas(_ user: BackendUser) {
+        guard let room = user.room else {
+            return
+        }
+
+        if (!room.userIsDrawing(user.id)) {
+            return
+        }
+
+        room.clearCanvas()
     }
 }

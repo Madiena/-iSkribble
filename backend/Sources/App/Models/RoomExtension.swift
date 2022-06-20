@@ -92,4 +92,20 @@ extension Room {
         
         broadcastToAllUsers(payload: SocketEvent(type: .updateCanvas, content: gameData.imageData.toJSONString()))
     }
+
+    func clearCanvas() {
+        gameData.imageData = []
+        
+        broadcastToAllUsers(payload: SocketEvent(type: .updateCanvas, content: gameData.imageData.toJSONString()))
+    }
+
+    func undoDrawing() {
+        let _ = gameData.imageData.popLast()
+        
+        broadcastToAllUsers(payload: SocketEvent(type: .updateCanvas, content: gameData.imageData.toJSONString()))
+    }
+
+    func userIsDrawing(_ userId: UUID) -> Bool {
+        return gameData.currentUserDrawing == userId
+    }
 }
