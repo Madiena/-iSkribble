@@ -8,14 +8,13 @@
 import SwiftUI
 
 struct PickWordView: View {
-    @Environment var wordsToPick: [String]
+    @EnvironmentObject var gameManager: GameManager
     
     
     var body: some View {
-        ForEach (wordsToPick) { word in
+        ForEach (gameManager.wordsToPickFrom ?? [], id: \.self) { word in
             Button(word) {
-                onSubmit({
-                })
+                gameManager.pickWord(word)
             }
         }
     }
@@ -23,6 +22,7 @@ struct PickWordView: View {
 
 struct PickWordView_Previews: PreviewProvider {
     static var previews: some View {
-        PickWordView()
+        
+        PickWordView().environmentObject(GameManager())
     }
 }

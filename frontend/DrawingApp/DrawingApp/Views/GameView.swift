@@ -27,6 +27,10 @@ struct GameView: View {
             ChatView()
                 .frame(width: 310, height: 210, alignment: .center)
         }
+        .sheet(isPresented: (gameManager.wordsToPickFrom != nil), content: {
+            PickWordView()
+        })
+        .interactiveDismissDisabled(true)
     }
 }
 
