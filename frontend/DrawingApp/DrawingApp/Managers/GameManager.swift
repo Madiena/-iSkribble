@@ -20,13 +20,15 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     @Published var ownUserIsDrawing = false
     
     @Published var currentDrawing: Drawing = Drawing(color: CGColor(red: 0, green: 0, blue: 0, alpha: 1), lineWidth: 3.0)
+    @Published var wordsToPickFrom: [String]? = nil
+    
     
     override init() {
         super.init()
         
         webSocketManager.delegate = self
     }
-
+    
     func connect(roomId: String, userName: String) {
         webSocketManager.connect("ws://localhost:8080/\(roomId)?name=\(userName)")
     }
@@ -61,20 +63,22 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
         
         do {
             switch socketEvent.type {
-                case .sendMessage:
-                    try handleSendMessage(socketEvent)
-                case .setup :
-                    try handleSetup(socketEvent)
-                case .userConnected :
-                    try handleUserConnected(socketEvent)
-                case .userDisconnected :
-                    try handleUserDisconnected(socketEvent)
-                case .updateGameState:
-                    try handleUpdateGameState(socketEvent)
-                case .updateCanvas:
-                    try handleUpdateCanvas(socketEvent)
-                default:
-                    break
+            case .sendMessage:
+                try handleSendMessage(socketEvent)
+            case .setup :
+                try handleSetup(socketEvent)
+            case .userConnected :
+                try handleUserConnected(socketEvent)
+            case .userDisconnected :
+                try handleUserDisconnected(socketEvent)
+            case .updateGameState:
+                try handleUpdateGameState(socketEvent)
+            case .updateCanvas:
+                try handleUpdateCanvas(socketEvent)
+            case .pickWordFromList:
+                try handlePickWordFromList(socketEvent)
+            default:
+                break
             }
         } catch {
             print(error)
@@ -84,7 +88,7 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     
     func handleSendMessage(_ socketEvent: SocketEvent) throws {
         let messageData = try JSONSerializer.decode(Message.self, from: socketEvent.content!)
-
+        
         DispatchQueue.main.async {
             self.messages.append(messageData)
         }
@@ -92,7 +96,7 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     
     func handleSetup(_ socketEvent: SocketEvent) throws {
         let setupData = try JSONSerializer.decode(SetupData.self, from: socketEvent.content!)
-
+        
         DispatchQueue.main.async {
             self.users = setupData.users
             self.ownUser = setupData.ownUser
@@ -133,6 +137,14 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
         }
     }
     
+    func handlePickWordFromList(_ socketEvent: SocketEvent) throws {
+        let wordsData = try JSONSerializer.decode([String].self, from: socketEvent.content!)
+        
+        DispatchQueue.main.async {
+            self.wordsToPickFrom = wordsData
+        }
+    }
+    
     public func sendMessage(_ message: String) {
         webSocketManager.sendSocketEvent(SocketEvent(type: .sendMessage, content: message))
     }
@@ -147,5 +159,10 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     
     public func clearCanvas() {
         webSocketManager.sendSocketEvent(SocketEvent(type: .clearCanvas, content: nil))
+    }
+    
+    public func pickWord(_ word: String) {
+        webSocketManager.sendSocketEvent(SocketEvent(type: .pickWord, content: word))
+        wordsToPickFrom = nil
     }
 }
