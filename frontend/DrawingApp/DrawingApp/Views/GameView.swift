@@ -17,24 +17,23 @@ struct GameView: View {
     
     var body: some View {
         VStack(alignment: .center) {
-            Text("Draw something!")
-                .font(.largeTitle)
-                .padding()
             DrawingPad(
                 currentDrawing: $currentDrawing,
                 color: $color,
                 lineWidth: $lineWidth
             )
+            .frame(width: 310, height: 310, alignment: .center)
             ChatView()
-                .offset(y: 50)
-            DrawingControls(color: $color, lineWidth: $lineWidth)
-                .fixedSize(horizontal: 100 != 0, vertical: 50 != 0)
+                .frame(width: 310, height: 210, alignment: .center)
+                
+//            DrawingControls(color: $color, lineWidth: $lineWidth)
+//                .fixedSize(horizontal: 100 != 0, vertical: 50 != 0)
         }
     }
 }
 
 struct GameView_Previews: PreviewProvider {
     static var previews: some View {
-        GameView()
+        GameView().environmentObject(GameManager())
     }
 }
