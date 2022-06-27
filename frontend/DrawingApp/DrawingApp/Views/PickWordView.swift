@@ -16,7 +16,11 @@ struct PickWordView: View {
             ForEach (gameManager.wordsToPickFrom ?? [], id: \.self) { word in
                 Button(word) {
                     gameManager.pickWord(word)
-                }.buttonStyle(.borderedProminent)
+                }.buttonStyle(.bordered)
+                    .foregroundColor(Color.white)
+                    .background(Color(red: 0.7, green: 0.7, blue: 0.9))
+                    .clipShape(Capsule())
+                
             }
         }
     }
