@@ -2,7 +2,7 @@
 //  PickWordView.swift
 //  DrawingApp
 //
-//  Created by Lothar Hestermann on 20.06.22.
+//  Created by Madelaine Hestermann on 20.06.22.
 //
 
 import SwiftUI

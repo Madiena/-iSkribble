@@ -16,22 +16,21 @@ struct GameView: View {
     var body: some View {
         VStack(alignment: .center) {
             ZStack {
-                DrawingPad()
-                    .frame(width: 310, height: 310, alignment: .center)
+                DrawingPad().scaledToFit()
+                
                 
                 if (gameManager.ownUserIsDrawing) {
                     DrawingControlsButtonView(drawingControlsShown: drawingControlShown)
-                        .offset(x: -120, y: 70)
+        
                 }
             }
-            ChatView()
-                .frame(width: 310, height: 210, alignment: .center)
+            ChatView().scaledToFit()
         }
-        .sheet(isPresented: (gameManager.wordsToPickFrom != nil), content: {
-            PickWordView()
-        })
-        .interactiveDismissDisabled(true)
-    }
+   //     .sheet(isPresented: (gameManager.wordsToPickFrom != nil), content: {
+   //         PickWordView()
+    //    })
+   //     .interactiveDismissDisabled(true)
+  }
 }
 
 struct GameView_Previews: PreviewProvider {

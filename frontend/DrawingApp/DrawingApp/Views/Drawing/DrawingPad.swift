@@ -37,7 +37,7 @@ struct DrawingPad: View {
                     lineCap: .round
                 )
             )
-        }
+        }.edgesIgnoringSafeArea(.all)
         .frame(maxHeight: .infinity)
         .background(Color.gray.opacity(0.2))
         .gesture(

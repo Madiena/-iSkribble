@@ -31,8 +31,9 @@ struct ChatView: View {
                             gameManager.sendMessage(chat)
                             chat = ""
                         }
-                        .offset(y: 80)
-        }
+                        .offset(y:80)
+      }
+      .offset(y:50)
     }
    
 }
