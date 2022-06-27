@@ -41,8 +41,11 @@ struct ConnectionView: View {
                 Button("Connect") {
                     gameManager.connect(roomId: roomId, userName: userName)
                 }
-                .frame(height: nil)
-                .buttonStyle(.borderedProminent)
+                .background(Color(red: 0.7, green: 0.7, blue: 0.9))
+                .foregroundColor(Color.white)
+                .buttonStyle(.bordered)
+                .clipShape(Capsule())
+                
             }
         }
     }
