@@ -17,8 +17,7 @@ struct ChatView: View {
           List(gameManager.messages, id: \.self) { message in
               ContentMessageView(contentMessage: message.content, isCurrentUser: message.author == gameManager.ownUser)
           }.listStyle(.sidebar)
-              .offset(y: -55)
-           .frame(maxHeight: 430)
+          padding()
           TextField("Enter message", text: $chat)
                         .textFieldStyle(.roundedBorder)
                         .frame(alignment: .bottom)
@@ -31,8 +30,8 @@ struct ChatView: View {
                             gameManager.sendMessage(chat)
                             chat = ""
                         }
-                        .offset(y: 80)
-        }
+                        .offset(y:80)
+      }
     }
    
 }

@@ -14,24 +14,25 @@ struct GameView: View {
     
     var body: some View {
         VStack(alignment: .center) {
+            
             if (gameManager.wordsToPickFrom == nil) {
                 ZStack {
-                    DrawingPad()
-                        .frame(width: 310, height: 310, alignment: .center)
+                    DrawingPad().scaledToFit()
+                    
                     
                     if (gameManager.ownUserIsDrawing) {
-                        DrawingControlsButtonView(drawingControlsShown: drawingControlShown)
-                            .offset(x: -120, y: 70)
+                        DrawingControlsButtonView(drawingControlsShown: drawingControlShown).scaledToFit()
+                        
                     }
                 }
             }
             else {
                 PickWordView()
             }
-            ChatView()
-                .frame(width: 310, height: 210, alignment: .center)
+            ChatView().scaledToFit()
         }
     }
+    
 }
 
 struct GameView_Previews: PreviewProvider {
