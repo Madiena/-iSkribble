@@ -16,13 +16,10 @@ struct GameView: View {
         VStack(alignment: .center) {
             
             if (gameManager.wordsToPickFrom == nil) {
-                ZStack {
+                ZStack(alignment: .topLeading) {
                     DrawingPad().scaledToFit()
-                    
-                    
                     if (gameManager.ownUserIsDrawing) {
                         DrawingControlsButtonView(drawingControlsShown: drawingControlShown).scaledToFit()
-                        
                     }
                 }
             }
