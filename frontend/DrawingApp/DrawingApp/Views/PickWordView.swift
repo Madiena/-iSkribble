@@ -20,7 +20,6 @@ struct PickWordView: View {
                     .foregroundColor(Color.white)
                     .background(Color(red: 0.7, green: 0.7, blue: 0.9))
                     .clipShape(Capsule())
-                
             }
         }
     }
