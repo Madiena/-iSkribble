@@ -25,13 +25,11 @@ struct GameView: View {
                         
                     }
                 }
-                ChatView().scaledToFit()
             }
             else {
                 PickWordView()
             }
-            ChatView()
-                .frame(width: 310, height: 210, alignment: .center)
+            ChatView().scaledToFit()
         }
     }
     
