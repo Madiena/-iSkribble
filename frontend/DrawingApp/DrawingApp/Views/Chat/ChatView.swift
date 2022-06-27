@@ -13,29 +13,28 @@ struct ChatView: View {
     @State var chat: String = ""
     
     var body: some View {
-      ZStack(){
-          List(gameManager.messages, id: \.self) { message in
-              ContentMessageView(contentMessage: message.content, isCurrentUser: message.author == gameManager.ownUser)
-          }.listStyle(.sidebar)
-          padding()
-          TextField("Enter message", text: $chat)
-                        .textFieldStyle(.roundedBorder)
-                        .frame(alignment: .bottom)
-                        .padding()
-                        .font(.title)
-                        .foregroundColor(Color.gray)
-                        .navigationBarTitle("Chat", displayMode: .inline)
-                        .multilineTextAlignment(.leading)
-                        .onSubmit {
-                            gameManager.sendMessage(chat)
-                            chat = ""
-                        }
-                        .offset(y:80)
-      }
+        ZStack(){
+            List(gameManager.messages, id: \.self) { message in
+                ContentMessageView(contentMessage: message.content, isCurrentUser: message.author == gameManager.ownUser)
+            }.listStyle(.sidebar)
+            TextField("Enter message", text: $chat)
+                .textFieldStyle(.roundedBorder)
+                .frame(alignment: .bottom)
+                .padding()
+                .font(.title)
+                .foregroundColor(Color.gray)
+                .navigationBarTitle("Chat", displayMode: .inline)
+                .multilineTextAlignment(.leading)
+                .onSubmit {
+                    gameManager.sendMessage(chat)
+                    chat = ""
+                }
+                .offset(y:80)
+        }
     }
-   
-}
     
+}
+
 
 struct ChatView_Previews: PreviewProvider {
     static var previews: some View {
