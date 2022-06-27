@@ -11,49 +11,71 @@ import shared
 struct DrawingPad: View {
     @EnvironmentObject var gameManager: GameManager
     
+    private let canvasSize = CGSize(
+        width: 500,
+        height: 500
+    )
+    
     var body: some View {
-        Canvas { context, size in
-            for drawing in gameManager.gameData?.imageData ?? [] {
+        GeometryReader { proxy in
+            Canvas { context, size in
+                let scaledSize = scaleSize(size)
+                context.scaleBy(x: scaledSize.width, y: scaledSize.height)
+                
+                for drawing in gameManager.gameData?.imageData ?? [] {
+                    context.stroke(
+                        Path { path in
+                            self.add(drawing: drawing, toPath: &path)
+                        },
+                        with: .color(Color(drawing.color)),
+                        style: StrokeStyle(
+                            lineWidth: drawing.lineWidth,
+                            lineCap: .round
+                        )
+                    )
+                    
+                }
+                
                 context.stroke(
                     Path { path in
-                        self.add(drawing: drawing, toPath: &path)
+                        self.add(drawing: gameManager.currentDrawing, toPath: &path)
                     },
-                    with: .color(Color(drawing.color)),
+                    with: .color(Color(gameManager.currentDrawing.color)),
                     style: StrokeStyle(
-                        lineWidth: drawing.lineWidth,
+                        lineWidth: gameManager.currentDrawing.lineWidth,
                         lineCap: .round
                     )
                 )
-                
             }
-            
-            context.stroke(
-                Path { path in
-                    self.add(drawing: gameManager.currentDrawing, toPath: &path)
-                },
-                with: .color(Color(gameManager.currentDrawing.color)),
-                style: StrokeStyle(
-                    lineWidth: gameManager.currentDrawing.lineWidth,
-                    lineCap: .round
-                )
+            .frame(maxHeight: .infinity)
+            .background(Color.gray.opacity(0.2))
+            .gesture(
+                DragGesture(minimumDistance: 0.1)
+                    .onChanged({ (value) in
+                        let currentPoint = scalePoint(
+                            proxy.size,
+                            point: value.location
+                        )
+                        gameManager.currentDrawing.path.append(currentPoint)
+                        
+                    })
+                    .onEnded({ (value) in
+                        gameManager.sendDrawing()
+                        
+                        gameManager.currentDrawing.path = []
+                    }),
+                including: gameManager.ownUserIsDrawing ? .all : .none
             )
         }
-        .frame(maxHeight: .infinity)
-        .background(Color.gray.opacity(0.2))
-        .gesture(
-            DragGesture(minimumDistance: 0.1)
-                .onChanged({ (value) in
-                    let currentPoint = value.location
-                    gameManager.currentDrawing.path.append(currentPoint)
-                    
-                })
-                .onEnded({ (value) in
-                    gameManager.sendDrawing()
-                    
-                    gameManager.currentDrawing.path = []
-                }),
-            including: gameManager.ownUserIsDrawing ? .all : .none
-        )
+    }
+    
+    private func scaleSize(_ sizeToScale: CGSize) -> CGSize {
+        return CGSize(width: sizeToScale.width / canvasSize.width, height: sizeToScale.height / canvasSize.height)
+    }
+    
+    private func scalePoint(_ canvasSize: CGSize, point: CGPoint) -> CGPoint {
+        let canvasDelta = scaleSize(canvasSize)
+        return CGPoint(x: point.x / canvasDelta.width, y: point.y / canvasDelta.height)
     }
     
     private func add(drawing: Drawing, toPath path: inout Path) {
