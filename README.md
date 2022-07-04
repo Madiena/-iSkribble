@@ -17,6 +17,20 @@ Ein [skribbl.io](https://skribbl.io/)-Klon geschrieben in Swift.
 - Server starten:<br>
 `swift run`
 
+#### Anpassen der Wörterliste
+
+Die Wörterliste ist in `backend/Resources/words.json` definiert.<br>
+Hier können beliebig viele Wörter hinzugefügt oder gelöscht werden.<br>
+Es können auch eigene Wörterlisten benutzt werden, das Format ist hierbei:<br>
+```json
+[
+	"word1",
+	"word2",
+	...
+	"wordn"
+]
+```
+
 ### Client
 
 - In das Client Verzeichnis wechseln:<br>
