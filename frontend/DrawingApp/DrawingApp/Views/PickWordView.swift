@@ -13,6 +13,9 @@ struct PickWordView: View {
     
     var body: some View {
         VStack {
+            Text("Pick a word!")
+                .font(.title)
+                .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
             ForEach (gameManager.wordsToPickFrom ?? [], id: \.self) { word in
                 Button(word) {
                     gameManager.pickWord(word)
