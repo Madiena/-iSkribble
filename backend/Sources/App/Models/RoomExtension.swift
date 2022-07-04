@@ -63,7 +63,7 @@ extension Room {
         
         broadcastGameState()
         
-        let socketEvent = SocketEvent(type: .pickWordFromList, content: ["test1", "test2", "test3"].toJSONString())
+        let socketEvent = SocketEvent(type: .pickWordFromList, content: WordsProvider.shared.getRandomWords(3).toJSONString())
         (users[currentUserDrawingIndex] as! BackendUser).webSocket.send(payload: socketEvent)
     }
     
