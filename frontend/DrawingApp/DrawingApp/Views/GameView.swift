@@ -22,11 +22,11 @@ struct GameView: View {
                         DrawingControlsButtonView(drawingControlsShown: drawingControlShown).scaledToFit()
                     }
                 }
+                ChatView().scaledToFit()
             }
             else {
                 PickWordView()
             }
-            ChatView().scaledToFit()
         }
     }
     
