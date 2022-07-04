@@ -2,6 +2,10 @@
 
 Ein [skribbl.io](https://skribbl.io/)-Klon geschrieben in Swift.
 
+Von:<br>
+Maik Mursall<br>
+Madelaine Hestermann
+
 ## Starten der Applikation
 
 ### Server
