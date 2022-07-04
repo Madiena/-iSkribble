@@ -13,6 +13,7 @@ struct GameView: View {
     @State var drawingControlShown: Bool = false
     
     var body: some View {
+        
         VStack(alignment: .center) {
             
             if (gameManager.wordsToPickFrom == nil) {
@@ -21,6 +22,7 @@ struct GameView: View {
                     if (gameManager.ownUserIsDrawing) {
                         DrawingControlsButtonView(drawingControlsShown: drawingControlShown).scaledToFit()
                     }
+                    
                 }
                 ChatView().scaledToFit()
             }

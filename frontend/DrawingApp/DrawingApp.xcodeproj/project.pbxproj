@@ -13,6 +13,7 @@
 		586968B7285E050B005D5843 /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 586968B6285E050B005D5843 /* GameView.swift */; };
 		588AFED1285244CB007FB744 /* GameManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588AFED0285244CB007FB744 /* GameManager.swift */; };
 		588AFED32852476A007FB744 /* WebSocketManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 588AFED22852476A007FB744 /* WebSocketManager.swift */; };
+		E10F86AA287319B500D6D2A4 /* LogoutButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E10F86A9287319B500D6D2A4 /* LogoutButtonView.swift */; };
 		E12921B228575537002443CB /* ChatView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12921B128575537002443CB /* ChatView.swift */; };
 		E12921B42857589F002443CB /* ContentMessageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E12921B32857589F002443CB /* ContentMessageView.swift */; };
 		E172EE1D2844FE52001E64E6 /* DrawingPad.swift in Sources */ = {isa = PBXBuildFile; fileRef = E172EE1C2844FE52001E64E6 /* DrawingPad.swift */; };
@@ -36,6 +37,7 @@
 		586968B6285E050B005D5843 /* GameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameView.swift; sourceTree = "<group>"; };
 		588AFED0285244CB007FB744 /* GameManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameManager.swift; sourceTree = "<group>"; };
 		588AFED22852476A007FB744 /* WebSocketManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebSocketManager.swift; sourceTree = "<group>"; };
+		E10F86A9287319B500D6D2A4 /* LogoutButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LogoutButtonView.swift; sourceTree = "<group>"; };
 		E12921B128575537002443CB /* ChatView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatView.swift; sourceTree = "<group>"; };
 		E12921B32857589F002443CB /* ContentMessageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentMessageView.swift; sourceTree = "<group>"; };
 		E172EE1C2844FE52001E64E6 /* DrawingPad.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DrawingPad.swift; path = DrawingApp/Views/Drawing/DrawingPad.swift; sourceTree = SOURCE_ROOT; };
@@ -90,6 +92,7 @@
 				586968B4285E0412005D5843 /* ConnectionView.swift */,
 				586968B6285E050B005D5843 /* GameView.swift */,
 				E1B43DEA2860A9C1005997E6 /* PickWordView.swift */,
+				E10F86A9287319B500D6D2A4 /* LogoutButtonView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -261,6 +264,7 @@
 				586968B5285E0412005D5843 /* ConnectionView.swift in Sources */,
 				E184CB3F284E1EED002FA4EE /* ColorEntry.swift in Sources */,
 				E184CB3E284E0C64002FA4EE /* ColorsProvider.swift in Sources */,
+				E10F86AA287319B500D6D2A4 /* LogoutButtonView.swift in Sources */,
 				E17FF31E2844F9A60073D6CE /* DrawingAppApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
