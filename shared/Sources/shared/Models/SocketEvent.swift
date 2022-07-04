@@ -1,5 +1,5 @@
 //
-//  File.swift
+//  SocketEvent.swift
 //  
 //
 //  Created by Maik Mursall on 30.05.22.
