@@ -59,3 +59,15 @@ Es können auch eigene Wörterlisten benutzt werden, das Format ist hierbei:<br>
   - Wörterliste im Backend anpassbar.
 - Automatische Reihenfolge der Maler.
   - Wenn das Wort erraten worden ist, ist direkt der nächste Spieler dran.
+
+## Frameworks
+
+- `Vapor` (Nur Server)
+  - Server Framework für Swift
+- `SwiftUI` (Nur Client)
+- `CoreGraphics`
+  - Grafik-Framework, welches für die Leinwand benutzt wird.
+- `WebSocketKit`
+  - Ermöglicht die Kommunikation zwischen Client und Server über WebSockets.
+- `shared`
+	- Ein lokales Modul, welches geteilte Datenstrukturen und Funktionalitäten zwischen Client und Server enthält.
