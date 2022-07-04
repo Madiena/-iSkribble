@@ -71,3 +71,28 @@ Es können auch eigene Wörterlisten benutzt werden, das Format ist hierbei:<br>
   - Ermöglicht die Kommunikation zwischen Client und Server über WebSockets.
 - `shared`
 	- Ein lokales Modul, welches geteilte Datenstrukturen und Funktionalitäten zwischen Client und Server enthält.
+
+## Netzwerkkommunikation
+
+Die Kommunikation zwischen Client und Server wurde über WebSockets realisiert.
+
+Dafür wurde ein eigenes Protokoll entwickelt, welches an [socket.io](https://socket.io/) angelehnt ist.
+
+### Protokoll
+
+Die Kommunikation wurde über eigene [Datenpakete](shared/Sources/shared/Models/SocketEvent.swift) realisiert, welche den [Pakettyp](shared/Sources/shared/Models/EventType.swift) und dessen Inhalt, als JSON-String, beschreiben.
+
+### Verbindungsaufbau
+
+Der Client sendet all seine Notwendigen Informationen über die URL zum Server.<br>
+Diese sind:
+- Raumname
+- Name des Spielers
+  
+im folgenden Schema:<br>
+`host/<roomId>?name=<username>`
+
+Beispiel URL:<br>
+`localhost:8080/TestRaum?name=TestSpieler`
+
+Falls der Verbindungsaufbau gelingt wird dann der aktuelle Spielstand an den Spieler gesendet und alle anderen Spieler werden über ein `Datenpaket` darüber informiert.
