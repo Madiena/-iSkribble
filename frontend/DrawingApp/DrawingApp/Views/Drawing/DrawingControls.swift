@@ -4,6 +4,7 @@
 //
 //  Created by Madelaine Hestermann on 30.05.22.
 //
+//  Original code idea by Martin Mitrevski (https://github.com/martinmitrevski) file: https://github.com/martinmitrevski/DrawingPadSwiftUI/blob/master/DrawingPadSwiftUI/DrawingControls.swift
 
 import SwiftUI
 import shared

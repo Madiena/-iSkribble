@@ -4,6 +4,8 @@
 //
 //  Created by Madelaine Hestermann on 06.06.22.
 //
+// Code by Martin Mitrevski (https://github.com/martinmitrevski) file: https://github.com/martinmitrevski/DrawingPadSwiftUI/blob/master/DrawingPadSwiftUI/ColorPicker.swift
+
 
 import SwiftUI
 
