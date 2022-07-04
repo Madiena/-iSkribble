@@ -23,7 +23,6 @@ struct ChatView: View {
                 .padding()
                 .font(.title)
                 .foregroundColor(Color.gray)
-                .navigationBarTitle("Chat", displayMode: .inline)
                 .multilineTextAlignment(.leading)
                 .onSubmit {
                     gameManager.sendMessage(chat)

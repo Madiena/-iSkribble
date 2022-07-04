@@ -11,10 +11,17 @@ struct ContentView: View {
     @EnvironmentObject var gameManager: GameManager
     
     var body: some View {
-        if (gameManager.isConnected) {
-            GameView()
-        } else {
-            ConnectionView()
+        NavigationView {
+            if (gameManager.isConnected) {
+                GameView()
+                    .toolbar {
+                        ToolbarItem(placement: .navigation) {
+                            LogoutButtonView()
+                        }}
+                
+            } else {
+                ConnectionView()
+            }
         }
     }
 }
