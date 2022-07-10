@@ -30,7 +30,9 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     }
     
     func connect(roomId: String, userName: String) {
-        webSocketManager.connect("ws://localhost:8080/\(roomId)?name=\(userName)")
+        let backendURL = (UserDefaults.standard.string(forKey: "backendURL") ?? "localhost:8080")
+        
+        webSocketManager.connect("ws://\(backendURL)/\(roomId)?name=\(userName)")
     }
     
     func disconnect() {
@@ -59,8 +61,6 @@ class GameManager: NSObject, ObservableObject, WebSocketManagerDelegate {
     }
     
     func handleSocketEvent(_ socketEvent: SocketEvent) {
-        print(socketEvent)
-        
         do {
             switch socketEvent.type {
             case .sendMessage:

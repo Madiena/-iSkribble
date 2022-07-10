@@ -11,7 +11,7 @@ struct ConnectionView: View {
     @EnvironmentObject var gameManager: GameManager
     
     @State private var roomId: String = ""
-    @State private var userName: String = ""
+    @State private var userName: String = (UserDefaults.standard.string(forKey: "userName") ?? "")
     
     var body: some View {
         VStack(alignment: .center) {
@@ -37,16 +37,16 @@ struct ConnectionView: View {
             .textFieldStyle(.roundedBorder)
             .foregroundColor(Color(red: 0.4, green: 0.4, blue: 0.4))
             
-            if (roomId.count > 0 && userName.count > 0) {
-                Button("Connect") {
-                    gameManager.connect(roomId: roomId, userName: userName)
-                }
-                .background(Color(red: 0.7, green: 0.7, blue: 0.9))
-                .foregroundColor(Color.white)
-                .buttonStyle(.bordered)
-                .clipShape(Capsule())
-                
+            Button("Connect") {
+                UserDefaults.standard.set(userName, forKey: "userName")
+                gameManager.connect(roomId: roomId, userName: userName)
             }
+            .disabled(roomId.isEmpty || userName.isEmpty)
+            .background(Color(red: 0.7, green: 0.7, blue: 0.9))
+            .foregroundColor(Color.white)
+            .buttonStyle(.bordered)
+            .clipShape(Capsule())
+            
         }
     }
 }
