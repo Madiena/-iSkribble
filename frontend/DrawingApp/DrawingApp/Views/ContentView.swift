@@ -12,16 +12,17 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            if (gameManager.isConnected) {
-                GameView()
-                    .toolbar {
-                        ToolbarItem(placement: .navigation) {
-                            LogoutButtonView()
-                        }}
-                
-            } else {
-                ConnectionView()
+            VStack {
+                if (gameManager.isConnected) {
+                    //LogoutButtonView()
+                    GameView()
+                    
+                } else {
+                    ConnectionView()
+                }
             }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 0, maxHeight: .infinity, alignment: .top)
+            .navigationBarHidden(true)
         }
     }
 }

@@ -13,10 +13,11 @@ struct ChatView: View {
     @State var chat: String = ""
     
     var body: some View {
-        ZStack(){
+        VStack{
             List(gameManager.messages, id: \.self) { message in
                 ContentMessageView(contentMessage: message.content, isCurrentUser: message.author == gameManager.ownUser)
             }.listStyle(.sidebar)
+            
             TextField("Enter message", text: $chat)
                 .textFieldStyle(.roundedBorder)
                 .frame(alignment: .bottom)
@@ -28,7 +29,6 @@ struct ChatView: View {
                     gameManager.sendMessage(chat)
                     chat = ""
                 }
-                .offset(y:80)
         }
     }
     

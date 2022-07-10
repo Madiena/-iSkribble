@@ -48,7 +48,7 @@ struct DrawingPad: View {
                     )
                 )
             }
-            .frame(maxHeight: .infinity)
+            //.frame(maxHeight: .infinity)
             .background(Color.gray.opacity(0.2))
             .gesture(
                 DragGesture(minimumDistance: 0.1)

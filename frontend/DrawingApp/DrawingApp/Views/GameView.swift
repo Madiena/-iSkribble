@@ -13,18 +13,20 @@ struct GameView: View {
     @State var drawingControlShown: Bool = false
     
     var body: some View {
-        
-        VStack(alignment: .center) {
-            
+        VStack(
+            spacing: 0
+        ) {
             if (gameManager.wordsToPickFrom == nil) {
                 ZStack(alignment: .topLeading) {
-                    DrawingPad().scaledToFit()
+                    DrawingPad()
+                        .aspectRatio(1, contentMode: .fill)
+                        .layoutPriority(1)
                     if (gameManager.ownUserIsDrawing) {
                         DrawingControlsButtonView(drawingControlsShown: drawingControlShown).scaledToFit()
                     }
                     
                 }
-                ChatView().scaledToFit()
+                ChatView()
             }
             else {
                 PickWordView()
