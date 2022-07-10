@@ -31,7 +31,7 @@ struct GameView: View {
             else {
                 PickWordView()
             }
-        }
+        }.frame(maxWidth: .infinity)
     }
     
 }
