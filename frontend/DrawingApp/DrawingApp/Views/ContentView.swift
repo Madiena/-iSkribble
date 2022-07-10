@@ -12,10 +12,8 @@ struct ContentView: View {
     
     var body: some View {
         NavigationView {
-            VStack(alignment: .leading, spacing: 0) {
+            VStack {
                 if (gameManager.isConnected) {
-                    LogoutButtonView()
-                        .padding([.top, .leading, .bottom], 5.0)
                     GameView()
                     
                 } else {
