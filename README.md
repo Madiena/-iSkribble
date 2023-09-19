@@ -3,8 +3,9 @@
 Ein [skribbl.io](https://skribbl.io/)-Klon geschrieben in Swift.
 
 Von:<br>
-Maik Mursall<br>
-Madelaine Hestermann
+[Maik Mursall](https://github.com/maik-mursall)<br>
+& <br>
+Me
 
 ## Starten der Applikation
 
